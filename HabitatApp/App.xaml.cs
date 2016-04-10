@@ -13,7 +13,6 @@ namespace HabitatApp
 
 		public static App Instance; 
 
-
 		public App ()
 		{
 			Instance = this;
