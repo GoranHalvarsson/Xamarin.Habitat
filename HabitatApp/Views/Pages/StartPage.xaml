@@ -7,14 +7,11 @@
 	x:Name="rootPage" 
 	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
-		<RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0">
-			<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,0,10,10" VerticalOptions="StartAndExpand" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
+		<RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+			<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,0,10,10" VerticalOptions="StartAndExpand" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.95}" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
 				<carousel:CarouselView.ItemTemplate>
 					<DataTemplate>
 						<Grid>
-							<Grid.GestureRecognizers>
-								<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
-							</Grid.GestureRecognizers>
 							<Image x:Name="IndicatorRef" Opacity="{Binding Source={x:Reference rootPage}, Path=BindingContext.LongPressedOpacity}" Source="{Binding CarouselImage, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
 								<Image.GestureRecognizers>
 									<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />

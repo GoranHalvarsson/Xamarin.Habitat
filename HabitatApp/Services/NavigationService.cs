@@ -11,7 +11,7 @@ namespace HabitatApp.Services
 	using System.Collections.Generic;
 	using HabitatApp.Repositories;
 	using HabitatApp.Models;
-	using HabitatApp.Extensions;
+	using Autofac;
 	using HabitatApp.ViewModels;
 
 	public class NavigationService : INavigationService
@@ -26,7 +26,7 @@ namespace HabitatApp.Services
 			_settingsRepository = settingsRepository;
 		}
 
-		private async Task<Page> LoadPageByPageData(PageData pageData)
+		private Page LoadPageByPageData(PageData pageData)
 		{
 
 			if (pageData == null || pageData.ItemContext == null)
@@ -38,17 +38,19 @@ namespace HabitatApp.Services
 				return null;
 
 
-			Type pageType = Type.GetType (string.Format("HabitatApp.Views.Pages.{0}",item.GetTemplateName ()));
+			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.{item.GetTemplateName ()}");
 
 			if (pageType == null)
 				return null;
 
 			//Load page by page type
-			Page currentPage = (Page)Activator.CreateInstance (pageType);
+			Page currentPage = HabitatApp.App.Instance.Container.Resolve(pageType) as Page;
+		
+			IViewModel viewModel = (IViewModel)currentPage.BindingContext;
 
-			((IViewModel)currentPage.BindingContext).PageContext = pageData;
+			viewModel.PageContext = pageData;
 
-			((IViewModel)currentPage.BindingContext).ConnectedToPage = currentPage;
+			viewModel.ConnectedToPage = currentPage;
 
 			return currentPage;
 
@@ -66,7 +68,7 @@ namespace HabitatApp.Services
 				settings.SitecoreDefaultLanguage);
 
 
-			return await LoadPageByPageData(pageData);
+			return LoadPageByPageData(pageData);
 
 		}
 
@@ -79,7 +81,7 @@ namespace HabitatApp.Services
 
 		public async Task NavigateToPageByPageData (Page navigateFromPage, PageData pageData)
 		{
-			Page page = await LoadPageByPageData(pageData);
+			Page page = LoadPageByPageData(pageData);
 			await NavigateAndLoadBindingContext (navigateFromPage, page);
 		}
 
@@ -92,11 +94,6 @@ namespace HabitatApp.Services
 			//We need to load it all before page appears
 			//Page.Appering() gives an unfortunate delay
 			await viewModel.LoadAsync ();
-
-			//navigateToPage.Appearing += async (object sender, EventArgs e) => await viewModel.LoadAsync ();
-
-			//navigateToPage.Disappearing += async (object sender, EventArgs e) => await viewModel.UnLoadAsync ();
-
 
 			await navigateFromPage.Navigation.PushAsync (navigateToPage);
 		}
