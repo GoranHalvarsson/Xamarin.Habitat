@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="HabitatApp.Views.Controls.HeroWithWebView">
+	<ContentView.Content>
+		<ScrollView>
+			<StackLayout Orientation="Vertical">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="200" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Image Aspect="AspectFill" Source="{Binding ContentImage, Converter={StaticResource imageConverter}}" />
+						<StackLayout Padding="20" HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Vertical">
+							<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HabitatWhiteHeaderStyle}" />
+						</StackLayout>
+					</Grid>
+					<StackLayout Grid.Row="1" Padding="20" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+						<WebView Source="{Binding ContentBody, Converter={StaticResource htmlSourceConverter}, ConverterParameter='#FFF,#000'}" x:Name="Browser" IsEnabled="true" WidthRequest="1000" HeightRequest="1000" VerticalOptions="Fill" HorizontalOptions="Fill">
+						</WebView>
+					</StackLayout>
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>

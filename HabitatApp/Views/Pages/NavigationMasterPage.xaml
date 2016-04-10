@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:local="clr-namespace:HabitatApp;assembly=HabitatApp"
+	xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp"  
+	x:Class="HabitatApp.Views.Pages.NavigationMasterPage">
+	<MasterDetailPage.Master>
+		<ContentPage Padding="5, 25" Title=" " Icon="{Binding MenuIcon}" BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+			<StackLayout VerticalOptions="FillAndExpand">
+				
+					<ListView x:Name="listView" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" SeparatorVisibility="None" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding MenuItemSelected}">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<control:ViewCellNonSelectable>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="2">
+											</ColumnDefinition>
+											<ColumnDefinition Width="*">
+											</ColumnDefinition>
+										</Grid.ColumnDefinitions>
+										<BoxView Color="{Binding RowColor}" Grid.Column="0" />
+
+										<Label Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Title}" Font="Large" TextColor="White" LineBreakMode="TailTruncation"></Label>
+									</Grid>
+										
+								</control:ViewCellNonSelectable>
+						    </DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+			</StackLayout>
+		</ContentPage>
+	</MasterDetailPage.Master>
+	<MasterDetailPage.Detail>
+		<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		BackgroundColor = "{DynamicResource HabitatBackgroundColor}"
+		Title="Habitat">
+			<StackLayout VerticalOptions="Center">
+				<ActivityIndicator IsVisible="True" IsRunning="True" Color="White" />
+		    	<Label Text="Loading" VerticalOptions="Center" HorizontalOptions="Center" />
+		  	</StackLayout>
+		</ContentPage>
+	</MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -30,8 +30,72 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="HabitatApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Converters\HtmlSourceConverter.cs" />
+    <Compile Include="Converters\HtmlConverter.cs" />
+    <Compile Include="Extensions\SitecoreItemExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Converters\ImageUrlToImageSourceConverter%27.cs" />
+    <Compile Include="Views\Controls\Carousel\CarouselView.xaml.cs">
+      <DependentUpon>CarouselView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Carousel\CarouselLayout.cs" />
+    <Compile Include="Views\Controls\Carousel\PageIndicatorDots.cs" />
+    <Compile Include="Views\Controls\ViewCellNonSelectable.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Models\CarouselItem.cs" />
+    <Compile Include="Models\ObservableModel.cs" />
+    <Compile Include="Models\PageData.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\NavigationMenuItem.cs" />
+    <Compile Include="Services\ISitecoreService.cs" />
+    <Compile Include="Services\SitecoreService.cs" />
+    <Compile Include="Services\ISQLiteConnectionService.cs" />
+    <Compile Include="Services\SQLiteConnectionService.cs" />
+    <Compile Include="Services\INavigationMenuService.cs" />
+    <Compile Include="Services\NavigationMenuService.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\ILoggingService.cs" />
+    <Compile Include="Services\LoggingService.cs" />
+    <Compile Include="Services\CarouselItemService.cs" />
+    <Compile Include="Services\ICarouselItemService.cs" />
+    <Compile Include="Repositories\ISettingsRepository.cs" />
+    <Compile Include="Repositories\SettingsRepository.cs" />
+    <Compile Include="CrossDependencies\IConfig.cs" />
+    <Compile Include="CrossDependencies\ICustomSecureStringPasswordProvider.cs" />
+    <Compile Include="CrossDependencies\ISQLiteDb.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Pages\NavigationMasterViewModel.cs" />
+    <Compile Include="ViewModels\Pages\CarouselParentPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\SimpleContentPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\StartPageViewModel.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="HabitatAppModule.cs" />
+    <Compile Include="Views\Pages\CustomNavigationPage.cs" />
+    <Compile Include="Views\Pages\NavigationMasterPage.xaml.cs">
+      <DependentUpon>NavigationMasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\CarouselParentPage.xaml.cs">
+      <DependentUpon>CarouselParentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SimpleContentPage.xaml.cs">
+      <DependentUpon>SimpleContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\HeroWithTextView.xaml.cs">
+      <DependentUpon>HeroWithTextView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\HeroWithWebView.xaml.cs">
+      <DependentUpon>HeroWithWebView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -88,5 +152,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="CrossDependencies\" />
+    <Folder Include="Views\Pages\" />
+    <Folder Include="Views\Controls\" />
+    <Folder Include="Views\Controls\Carousel\" />
+    <Folder Include="ViewModels\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Controls\Carousel\CarouselView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\NavigationMasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\StartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\CarouselParentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\SimpleContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\HeroWithTextView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\HeroWithWebView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

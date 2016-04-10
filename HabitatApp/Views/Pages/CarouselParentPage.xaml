@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="HabitatApp.Views.Pages.CarouselParentPage" 
+	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp" 
+	Title="{Binding Title}" 
+	x:Name="rootPage" 
+	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+	<ScrollView>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="200" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" Padding="10,0,10,0">
+				<Image Aspect="AspectFill" Source="{Binding ContentImage, Converter={StaticResource imageConverter}}" />
+				<StackLayout Padding="10,10,10,20">
+					<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+						<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />
+						<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
+							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
+			<StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+				<RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0">
+					<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,5,10,0" VerticalOptions="StartAndExpand" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.98}" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
+						<carousel:CarouselView.ItemTemplate>
+							<DataTemplate>
+								<Grid>
+									<Image x:Name="IndicatorRef" Opacity="{Binding Source={x:Reference rootPage}, Path=BindingContext.LongPressedOpacity}" Source="{Binding CarouselImage, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
+										<Image.GestureRecognizers>
+											<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
+										</Image.GestureRecognizers>
+									</Image>
+									<StackLayout Padding="10,10,10,20">
+										<StackLayout.GestureRecognizers>
+											<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
+										</StackLayout.GestureRecognizers>
+										<StackLayout Opacity="0.9" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+											<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding Header}" Style="{DynamicResource HabitatWhiteSubtitleStyle}" />
+											<StackLayout HorizontalOptions="Start" VerticalOptions="Center" Orientation="Horizontal">
+												<Label x:Name="subtitleLabel" VerticalOptions="Center" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding Text, Converter={StaticResource htmlConverter}}" />
+											</StackLayout>
+										</StackLayout>
+									</StackLayout>
+								</Grid>
+							</DataTemplate>
+						</carousel:CarouselView.ItemTemplate>
+					</carousel:CarouselView>
+				</RelativeLayout>
+			</StackLayout>
+		</Grid>
+	</ScrollView>
+</ContentPage>

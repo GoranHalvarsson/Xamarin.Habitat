@@ -1,0 +1,65 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:conv="clr-namespace:HabitatApp.Converters;assembly=HabitatApp"  
+	x:Class="HabitatApp.App">
+	<Application.Resources>
+		<ResourceDictionary>
+			<OnPlatform x:TypeArguments="Font" Android="Large" iOS="Large" WinPhone="Large" x:Key="HeaderFontSize" />
+			<OnPlatform x:TypeArguments="Color" Android="White" iOS="White" WinPhone="White" x:Key="PrimaryTextColor" />
+			<OnPlatform x:TypeArguments="Color" Android="Black" iOS="Black" WinPhone="Black" x:Key="ArticleTextColor" />
+			<OnPlatform x:TypeArguments="Color" Android="#2E384E" iOS="#2E384E" WinPhone="#2E384E" x:Key="HabitatBackgroundColor" />
+			<OnPlatform x:TypeArguments="Color" Android="White" iOS="White" WinPhone="White" x:Key="HabitatMenuColor" />
+			<OnPlatform x:TypeArguments="Color" Android="#c8244f" iOS="#c8244f" WinPhone="#c8244f" x:Key="HabitatRedColor" />
+
+
+		
+			<conv:ImageUrlToImageSourceConverter x:Key="imageConverter" />
+			<conv:HtmlConverter x:Key="htmlConverter" />
+			<conv:HtmlSourceConverter x:Key="htmlSourceConverter" />
+
+
+
+			<Style x:Key="HeaderStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+				<Setter Property="FontSize" Value="40" />
+				<Setter Property="FontFamily" Value="HelveticaNeue-CondensedBlack" />
+			</Style>
+			<Style x:Key="HabitatWhiteHeaderStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+				<Setter Property="FontSize" Value="40" />
+				<Setter Property="FontFamily" Value="HelveticaNeue-CondensedBlack" />
+			</Style>
+			<Style x:Key="HabitatRedHeaderStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource HabitatRedColor}" />
+				<Setter Property="FontSize" Value="40" />
+				<Setter Property="FontFamily" Value="HelveticaNeue-CondensedBlack" />
+			</Style>
+			<Style x:Key="HabitatWhiteSubtitleStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="FontFamily" Value="HelveticaNeue" />
+			</Style>
+			<Style x:Key="HabitatRedSubtitleStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource HabitatRedColor}" />
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="FontFamily" Value="HelveticaNeue" />
+			</Style>
+			<Style x:Key="ArticleHeaderStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource ArticleTextColor}" />
+				<Setter Property="FontSize" Value="30" />
+				<Setter Property="FontFamily" Value="HelveticaNeue" />
+			</Style>
+			<Style x:Key="ArticleTextStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource HabitatBackgroundColor}" />
+				<Setter Property="FontSize" Value="20" />
+				<Setter Property="FontFamily" Value="HelveticaNeue" />
+			</Style>
+			<Style x:Key="ArticleLightTextStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+				<Setter Property="FontSize" Value="15" />
+				<Setter Property="FontFamily" Value="HelveticaNeue" />
+			</Style>
+		
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

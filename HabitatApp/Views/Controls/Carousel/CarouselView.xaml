@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp"
+	x:Class="HabitatApp.Views.Controls.Carousel.CarouselView">
+
+	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Spacing="0" >
+	         <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Padding="0" >
+						   
+	            <carousel:CarouselLayout x:Name="carouselLayout"
+	                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+	                SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" 
+	                IndicatorStyle="Dots" ItemsSource="{Binding CarouselItems}" 
+	                SelectedItem="{Binding CurrentCarouselItem, Mode=TwoWay}"
+	                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1.0}"
+	                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=1.0}"
+	                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1.0}"
+	              	RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1.0}">
+
+	            </carousel:CarouselLayout>
+
+
+
+	<!--            PagerIndicator - Centered in a StackLayout -->
+	            <StackLayout HorizontalOptions="Center" Padding="0,5,0,0"
+	                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.955}"
+	                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1.0}">
+
+	                <carousel:PagerIndicatorDots x:Name="dotLayout"
+
+	                        ItemsSource="{Binding CarouselItems}" SelectedItem="{Binding CurrentCarouselItem, Mode=TwoWay}" />
+
+	            </StackLayout>
+	        </RelativeLayout>
+
+    </StackLayout>
+
+</ContentView>
