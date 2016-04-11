@@ -41,12 +41,10 @@
     </Compile>
     <Compile Include="Views\Controls\Carousel\CarouselLayout.cs" />
     <Compile Include="Views\Controls\Carousel\PageIndicatorDots.cs" />
-    <Compile Include="Views\Controls\ViewCellNonSelectable.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="Models\CarouselItem.cs" />
     <Compile Include="Models\ObservableModel.cs" />
     <Compile Include="Models\PageData.cs" />
     <Compile Include="Models\Settings.cs" />
@@ -61,8 +59,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ILoggingService.cs" />
     <Compile Include="Services\LoggingService.cs" />
-    <Compile Include="Services\CarouselItemService.cs" />
-    <Compile Include="Services\ICarouselItemService.cs" />
     <Compile Include="Repositories\ISettingsRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="CrossDependencies\IConfig.cs" />
@@ -77,7 +73,6 @@
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="HabitatAppModule.cs" />
-    <Compile Include="Views\Pages\CustomNavigationPage.cs" />
     <Compile Include="Views\Pages\NavigationMasterPage.xaml.cs">
       <DependentUpon>NavigationMasterPage.xaml</DependentUpon>
     </Compile>
@@ -95,6 +90,21 @@
     </Compile>
     <Compile Include="Views\Controls\HeroWithWebView.xaml.cs">
       <DependentUpon>HeroWithWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\FastImage.cs" />
+    <Compile Include="Views\Controls\IFastImageProvider.cs" />
+    <Compile Include="Views\Controls\FastCell.cs" />
+    <Compile Include="Views\Controls\IFastCellCache.cs" />
+    <Compile Include="Views\Controls\ViewCellNonSelectable.cs" />
+    <Compile Include="Views\Pages\ListParentPage.xaml.cs">
+      <DependentUpon>ListParentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\ListParentPageViewModel.cs" />
+    <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Services\IListItemService.cs" />
+    <Compile Include="Services\ListItemService.cs" />
+    <Compile Include="Views\Controls\ViewFastCell.xaml.cs">
+      <DependentUpon>ViewFastCell.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -190,6 +200,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\HeroWithWebView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\ListParentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\ViewFastCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

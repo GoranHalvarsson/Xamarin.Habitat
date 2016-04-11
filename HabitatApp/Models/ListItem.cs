@@ -4,7 +4,7 @@ namespace HabitatApp.Models
 
 	using Xamarin.Forms;
 
-	public class CarouselItem: ObservableModel
+	public class ListItem: ObservableModel
 	{
 
 		private Color _backgroundColor;
@@ -70,7 +70,7 @@ namespace HabitatApp.Models
 
 		private string _imageUrl;
 
-		public string CarouselImage {
+		public string ImageUrl {
 			get {
 				return _imageUrl;
 			}

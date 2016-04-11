@@ -1,4 +1,4 @@
-﻿
+﻿using HabitatApp.Extensions;
 
 namespace HabitatApp.Services
 {
@@ -38,7 +38,7 @@ namespace HabitatApp.Services
 				return null;
 
 
-			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.{item.GetTemplateName ()}");
+			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.{item.GetTemplateName()}");
 
 			if (pageType == null)
 				return null;

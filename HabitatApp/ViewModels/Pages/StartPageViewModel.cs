@@ -17,19 +17,19 @@ namespace HabitatApp.ViewModels.Pages
 	{
 
 	
-		private readonly ICarouselItemService _carouselItemService;
+		private readonly IListItemService _listItemService;
 		private INavigationService _navigationService;
 
-		public StartPageViewModel (ICarouselItemService carouselItemService, INavigationService navigationService)
+		public StartPageViewModel (IListItemService listItemService, INavigationService navigationService)
 		{
-			_carouselItemService = carouselItemService;
+			_listItemService = listItemService;
 			_navigationService = navigationService;
 
 		}
 
 
-		CarouselItem _currentCarouselItem;
-		public CarouselItem CurrentCarouselItem {
+		ListItem _currentCarouselItem;
+		public ListItem CurrentCarouselItem {
 			get {
 				return _currentCarouselItem;
 			}
@@ -59,9 +59,9 @@ namespace HabitatApp.ViewModels.Pages
 		}
 
 	
-		private ObservableCollection<CarouselItem> _carouselItems = new ObservableCollection<CarouselItem> ();
+		private ObservableCollection<ListItem> _carouselItems = new ObservableCollection<ListItem> ();
 
-		public ObservableCollection<CarouselItem> CarouselItems {
+		public ObservableCollection<ListItem> CarouselItems {
 			get {
 				return _carouselItems;
 			}
@@ -112,7 +112,7 @@ namespace HabitatApp.ViewModels.Pages
 
 			base.Title = pageData.ItemContext.FirstOrDefault ().GetValueFromField (Constants.Sitecore.Fields.PageContent.Title);
 
-			IEnumerable<CarouselItem> carouselItems = await _carouselItemService.GenerateCarouselItemsFromTeasers(pageData.DataSourceFromField);
+			IEnumerable<ListItem> carouselItems = await _listItemService.GenerateListItemsFromTeasers(pageData.DataSourceFromField);
 
 			CarouselItems = carouselItems.ToObservableCollection ();
 

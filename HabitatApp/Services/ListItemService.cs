@@ -1,5 +1,5 @@
 ﻿
-namespace HabitatApp.Services.Cache
+namespace HabitatApp.Services
 {
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
@@ -8,13 +8,13 @@ namespace HabitatApp.Services.Cache
 	using HabitatApp.Extensions;
 	using System.Linq;
 
-	public class CarouselItemService : ICarouselItemService
+	public class ListItemService : IListItemService
 	{
-
-		public async Task<IEnumerable<CarouselItem>> GenerateCarouselItemsFromTeasers(IList<ScItemsResponse> itemsResponse)
+		
+		public async Task<IEnumerable<ListItem>> GenerateListItemsFromTeasers(IList<ScItemsResponse> itemsResponse)
 		{
 
-			List<CarouselItem> list = new List<CarouselItem> ();
+			List<ListItem> list = new List<ListItem> ();
 
 				
 			for (int i = 0; i < itemsResponse.Count(); i++) {
@@ -25,18 +25,18 @@ namespace HabitatApp.Services.Cache
 
 				ISitecoreItem item = itemsResponse [i].First ();
 
-				CarouselItem carouselItem = new CarouselItem{ 
+				ListItem listlItem = new ListItem{ 
 					Header = item.GetValueFromField(Constants.Sitecore.Fields.Teasers.TeaserTitle),
 					Text = item.GetValueFromField(Constants.Sitecore.Fields.Teasers.TeaserSummary),
 					NavigationItem = item.GetItemIdFromLinkField(Constants.Sitecore.Fields.Teasers.TeaserLink),
 					NavigationText = item.GetTextFromLinkField(Constants.Sitecore.Fields.Teasers.TeaserLink),
-					CarouselImage = item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.Teasers.TeaserImage)	
+					ImageUrl = item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.Teasers.TeaserImage)	
 
 
 				};
 
 
-				list.Add (carouselItem);
+				list.Add (listlItem);
 
 			}
 
@@ -44,10 +44,10 @@ namespace HabitatApp.Services.Cache
 
 		}
 
-		public async Task<IEnumerable<CarouselItem>> GenerateCarouselItemsFromChildren(ScItemsResponse itemsResponse)
+		public async Task<IEnumerable<ListItem>> GenerateListItemsFromChildren(ScItemsResponse itemsResponse)
 		{
 
-			List<CarouselItem> list = new List<CarouselItem> ();
+			List<ListItem> list = new List<ListItem> ();
 
 
 			for (int i = 0; i < itemsResponse.ResultCount; i++) {
@@ -57,16 +57,16 @@ namespace HabitatApp.Services.Cache
 				if (item == null)
 					continue;
 
-				CarouselItem carouselItem = new CarouselItem { 
+				ListItem listlItem = new ListItem{ 
 					Header = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Title),
 					Text = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Summary),
 					NavigationItem = item.Id,
 					NavigationText = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Title),
-					CarouselImage = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image)	
+					ImageUrl = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image)	
 
 				};
 
-				list.Add (carouselItem);
+				list.Add (listlItem);
 
 			}
 
@@ -75,12 +75,12 @@ namespace HabitatApp.Services.Cache
 		}
 
 
-		public async Task<CarouselItem> GetDefaultCarouselItem ()
+		public async Task<ListItem> GetDefaultListItem ()
 		{
-			return new CarouselItem{
+			return new ListItem{
 				Header = "Extensibility",
 				Text = "A consistent and discoverable architecture",
-				CarouselImage = "http://habitat.sitecore.net/-/media/Habitat/Images/Wide/Habitat-001-wide.jpg"	
+				ImageUrl = "http://habitat.sitecore.net/-/media/Habitat/Images/Wide/Habitat-001-wide.jpg"	
 
 			};
 		}

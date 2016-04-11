@@ -12,7 +12,7 @@
 				<carousel:CarouselView.ItemTemplate>
 					<DataTemplate>
 						<Grid>
-							<Image x:Name="IndicatorRef" Opacity="{Binding Source={x:Reference rootPage}, Path=BindingContext.LongPressedOpacity}" Source="{Binding CarouselImage, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
+							<Image x:Name="IndicatorRef" Source="{Binding ImageUrl, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
 								<Image.GestureRecognizers>
 									<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
 								</Image.GestureRecognizers>

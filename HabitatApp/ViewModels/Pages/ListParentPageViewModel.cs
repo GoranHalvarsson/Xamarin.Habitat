@@ -15,12 +15,12 @@ namespace HabitatApp.ViewModels.Pages
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
 
-	public class CarouselParentPageViewModel : ViewModelBase
+	public class ListParentPageViewModel : ViewModelBase
 	{
 		private readonly IListItemService _listItemService;
 		private readonly INavigationService _navigationService;
 
-		public CarouselParentPageViewModel (IListItemService listItemService, INavigationService navigationService)
+		public ListParentPageViewModel (IListItemService listItemService, INavigationService navigationService)
 		{
 			_listItemService = listItemService;
 			_navigationService = navigationService;
@@ -54,52 +54,37 @@ namespace HabitatApp.ViewModels.Pages
 			set { SetProperty (ref _contentSummary, value); }
 		}
 
-		private ObservableCollection<ListItem> _carouselItems = new ObservableCollection<ListItem> ();
+		private ObservableCollection<Tuple<ListItem,ListItem>> _listItems = new ObservableCollection<Tuple<ListItem,ListItem>> ();
 
-		public ObservableCollection<ListItem> CarouselItems {
+		public ObservableCollection<Tuple<ListItem,ListItem>> ListItems {
 			get {
-				return _carouselItems;
+				return _listItems;
 			}
 			set { 
-				SetProperty (ref _carouselItems, value); 
+				SetProperty (ref _listItems, value); 
+			}
+		}
 
-				if (_carouselItems != null) {
-					CurrentCarouselItem = _carouselItems.FirstOrDefault ();
+
+		private ListItem _listItemSelected;
+
+		public ListItem ListItemSelected {
+			get {
+				return _listItemSelected;
+			}
+			set {
+				SetProperty (ref _listItemSelected, value);
+
+				if (_listItemSelected != null) {
+
+					//Async?
+					_navigationService.NavigateToPageByItemId(ConnectedToPage, _listItemSelected.NavigationItem);
+
 				}
+
 			}
+
 		}
-
-
-		ListItem _currentCarouselItem;
-		public ListItem CurrentCarouselItem {
-			get {
-				return _currentCarouselItem;
-			}
-			set {
-				SetProperty (ref _currentCarouselItem, value);
-			}
-		}
-
-		private int _selectedIndex;
-		public int SelectedIndex {
-			get {
-				return _selectedIndex;
-			}
-			set {
-				SetProperty (ref _selectedIndex, value);
-			}
-		}
-
-		private int _scrollToIndex;
-		public int ScrollToIndex {
-			get {
-				return _scrollToIndex;
-			}
-			set {
-				SetProperty (ref _scrollToIndex, value);
-			}
-		}
-
 
 
 		private Command _linkSelectedCommand;
@@ -151,12 +136,11 @@ namespace HabitatApp.ViewModels.Pages
 			ContentSummary = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Summary);
 			ContentImage = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image);
 
+			IEnumerable<ListItem> listItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
 
-			IEnumerable<ListItem> carouselItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
+			ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
 
-			CarouselItems = carouselItems.ToObservableCollection ();
-
-			CurrentCarouselItem = CarouselItems.First();
+		
 
 		}
 

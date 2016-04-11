@@ -5,7 +5,6 @@ namespace HabitatApp
 	using Autofac;
 	using HabitatApp.Repositories;
 	using HabitatApp.Services;
-	using HabitatApp.Services.Cache;
 	using HabitatApp.ViewModels.Pages;
 	using HabitatApp.Views.Pages;
 
@@ -36,8 +35,8 @@ namespace HabitatApp
 				.As<INavigationMenuService> ()
 				.SingleInstance ();
 
-			builder.RegisterType<CarouselItemService> ()
-				.As<ICarouselItemService> ()
+			builder.RegisterType<ListItemService> ()
+				.As<IListItemService> ()
 				.SingleInstance ();
 
 			builder.RegisterType<NavigationService> ()
@@ -57,6 +56,9 @@ namespace HabitatApp
 
 			builder.RegisterType<CarouselParentPageViewModel> ();
 			builder.RegisterType<CarouselParentPage> ();
+
+			builder.RegisterType<ListParentPageViewModel> ();
+			builder.RegisterType<ListParentPage> ();
 
 		
 				

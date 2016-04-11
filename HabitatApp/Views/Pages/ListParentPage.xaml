@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="HabitatApp.Views.Pages.ListParentPage" 
+	xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp" 
+	Title="{Binding Title}" x:Name="rootPage" 
+	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+	<ScrollView>
+		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
+			<ListView x:Name="MediaItemsListView" 
+				BackgroundColor="{DynamicResource HabitatBackgroundColor}" 
+				ItemsSource="{Binding ListItems}" 
+				SelectedItem="{Binding ListItemSelected}" 
+				SeparatorVisibility="None" 
+				HorizontalOptions="FillAndExpand" 
+				Header="{Binding}" 
+				RowHeight="200">
+				<ListView.HeaderTemplate>
+					<DataTemplate>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="200" />
+							</Grid.RowDefinitions>
+							<Grid Grid.Row="0" Padding="0,0,0,10">
+								<Image Aspect="AspectFill" Source="{Binding ContentImage, Converter={StaticResource imageConverter}}" />
+								<StackLayout Padding="10,10,10,20">
+									<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+										<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />
+										<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
+											<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
+										</StackLayout>
+									</StackLayout>
+								</StackLayout>
+							</Grid>
+						</Grid>
+					</DataTemplate>
+				</ListView.HeaderTemplate>
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<control:ViewFastCell />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ScrollView>
+</ContentPage>
