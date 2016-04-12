@@ -147,6 +147,14 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\HamburgerIcon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\HamburgerIcon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\HamburgerIcon.png" />
+    <AndroidResource Include="Resources\drawable\HamburgerIcon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\habitatIcon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\habitatIcon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\habitatIcon.png" />
+    <AndroidResource Include="Resources\drawable\habitatIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
