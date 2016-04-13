@@ -1,6 +1,5 @@
 ﻿using HabitatApp.Droid.CrossDependencies;
 
-
 [assembly: Xamarin.Forms.Dependency(typeof(SQLiteDb))]
 namespace HabitatApp.Droid.CrossDependencies
 {
@@ -13,16 +12,20 @@ namespace HabitatApp.Droid.CrossDependencies
 
 	public class SQLiteDb : ISQLiteDb
 	{
+		private const string _fileName = "HabitatLocal.db3";
+
 		public SQLiteDb ()
 		{
 		}
 
 		public SQLiteConnection GetConnection ()
 		{
-			string fileName = "HabitatLocal.db3";
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-			string libraryPath = Path.Combine (documentsPath, "..", "Library");
-			string path = Path.Combine (libraryPath, fileName);
+			string applicationFolderPath = Path.Combine (documentsPath,"Habitat");
+			string path = Path.Combine (applicationFolderPath, _fileName);
+
+			if(!Directory.Exists(applicationFolderPath))
+				Directory.CreateDirectory(applicationFolderPath);
 
 			SQLitePlatformAndroid platform = new SQLitePlatformAndroid ();
 			SQLiteConnection connection = new SQLiteConnection(platform, path);
@@ -30,11 +33,11 @@ namespace HabitatApp.Droid.CrossDependencies
 			return connection;
 		}
 
-		public SQLiteAsyncConnection GetAsyncConnection (){
-			string fileName = "HabitatLocal.db3";
+		public SQLiteAsyncConnection GetAsyncConnection ()
+		{
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string applicationFolderPath = Path.Combine (documentsPath,"Habitat");
-			string path = Path.Combine (applicationFolderPath, fileName);
+			string path = Path.Combine (applicationFolderPath, _fileName);
 
 			if(!Directory.Exists(applicationFolderPath))
 				Directory.CreateDirectory(applicationFolderPath);

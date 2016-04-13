@@ -12,16 +12,18 @@ namespace HabitatApp.iOS.CrossDependencies
 
 	public class SQLiteDb : ISQLiteDb
 	{
+
+		private const string _fileName = "HabitatLocal.db3";
+
 		public SQLiteDb ()
 		{
 		}
 
 		public SQLiteConnection GetConnection ()
 		{
-			string fileName = "HabitatLocal.db3";
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string libraryPath = Path.Combine (documentsPath, "..", "Library");
-			string path = Path.Combine (libraryPath, fileName);
+			string path = Path.Combine (libraryPath, _fileName);
 
 			SQLitePlatformIOS platform = new SQLitePlatformIOS ();
 			SQLiteConnection connection = new SQLiteConnection(platform, path);
@@ -29,11 +31,11 @@ namespace HabitatApp.iOS.CrossDependencies
 			return connection;
 		}
 
-		public SQLiteAsyncConnection GetAsyncConnection (){
-			string fileName = "HabitatLocal.db3";
+		public SQLiteAsyncConnection GetAsyncConnection ()
+		{
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string libraryPath = Path.Combine (documentsPath, "..", "Library");
-			string path = Path.Combine (libraryPath, fileName);
+			string path = Path.Combine (libraryPath, _fileName);
 
 			var platform = new SQLitePlatformIOS();
 
