@@ -14,7 +14,7 @@ namespace HabitatApp.Repositories
 	{
 		private ILoggingService _loggingService;
 		private readonly SQLiteAsyncConnection _asyncConnection;
-		private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim (1);
+		private readonly SemaphoreSlim _repositoryLock = new SemaphoreSlim (1);
 
 		public SettingsRepository (ILoggingService loggingService, ISQLiteConnectionService sqLiteConnectionService)
 		{
@@ -44,15 +44,15 @@ namespace HabitatApp.Repositories
 
 			};
 
-			await _semaphoreSlim.WaitAsync ();
+			await _repositoryLock.WaitAsync ();
 
 			try {
-				await this._asyncConnection.InsertAsync(settings);
+				await _asyncConnection.InsertAsync(settings);
 			} catch (Exception ex) {
 				_loggingService.Log ("Error in Insert,  SettingsRepository . Error: {0}", ex.Message); 
 				throw ex;
 			} finally { 
-				_semaphoreSlim.Release ();
+				_repositoryLock.Release ();
 			}
 
 		}		
@@ -62,7 +62,7 @@ namespace HabitatApp.Repositories
 		{
 			Settings settings = null;
 			try {
-				settings = await this._asyncConnection.GetAsync<Settings> (s => s.RestBaseUrl != null);
+				settings = await _asyncConnection.GetAsync<Settings> (s => s.RestBaseUrl != null);
 			} catch (System.Exception ex) {
 				_loggingService.Log ("Error in reading object from DB,  SettingsRepository . Error: {0}", ex.Message); 
 			}
@@ -88,14 +88,14 @@ namespace HabitatApp.Repositories
 
 		public async Task<Models.Settings> Update (Settings settings)
 		{
-			await _semaphoreSlim.WaitAsync ();
+			await _repositoryLock.WaitAsync ();
 
 			try {
 				await _asyncConnection.UpdateAsync (settings);
 			} catch (Exception ex) {
 				_loggingService.Log ("Error in Update,  SettingsRepository . Error: {0}", ex.Message); 
 			} finally { 
-				_semaphoreSlim.Release ();
+				_repositoryLock.Release ();
 			}
 
 			return await Get ();
@@ -105,14 +105,14 @@ namespace HabitatApp.Repositories
 
 			Int32 result = 0;
 
-			await this._semaphoreSlim.WaitAsync ();
+			await _repositoryLock.WaitAsync ();
 
 			try {
 
-				result = await this._asyncConnection.DeleteAllAsync<Settings> ();
+				result = await _asyncConnection.DeleteAllAsync<Settings> ();
 
 			} finally { 
-				this._semaphoreSlim.Release ();
+				_repositoryLock.Release ();
 			}
 
 			return result > 0;
