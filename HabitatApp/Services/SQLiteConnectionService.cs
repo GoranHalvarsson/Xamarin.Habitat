@@ -4,7 +4,6 @@
 namespace HabitatApp.Services
 {
 
-
 	using SQLite.Net.Async;
 	using Xamarin.Forms;
 	using HabitatApp.Services;

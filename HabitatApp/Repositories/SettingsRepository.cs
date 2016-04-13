@@ -1,6 +1,4 @@
-﻿
-
-namespace HabitatApp.Repositories
+﻿namespace HabitatApp.Repositories
 {
 
 	using System;
