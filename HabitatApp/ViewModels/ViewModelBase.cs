@@ -29,12 +29,6 @@ namespace HabitatApp.ViewModels
 		}
 
 
-		public void SetState<T>(Action<T> action) where T : class, IViewModel
-		{
-			action(this as T);
-		}
-
-
 		private bool _isBusy;
 
 		public bool IsBusy

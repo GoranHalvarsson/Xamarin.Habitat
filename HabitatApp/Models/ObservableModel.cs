@@ -1,7 +1,7 @@
 ﻿namespace HabitatApp.Models
 {
 
-	using System;
+
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
 	using System.Collections.Generic;
