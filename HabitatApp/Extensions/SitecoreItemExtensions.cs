@@ -38,7 +38,7 @@ namespace HabitatApp.Extensions
 
 		}
 
-		public static string GetImageUrlFromMediaField(this ISitecoreItem item, string mediafieldName, string defaultImageUrl = "http://myhabitat.dev/-/media/Habitat/Images/Wide/Habitat-004-wide.jpg"){
+		public static string GetImageUrlFromMediaField(this ISitecoreItem item, string mediafieldName, string websiteUrl = null, string defaultImageUrl = "http://myhabitat.dev/-/media/Habitat/Images/Wide/Habitat-004-wide.jpg"){
 
 
 			XElement xmlElement = GetXElement (item, mediafieldName);
@@ -52,10 +52,10 @@ namespace HabitatApp.Extensions
 
 			Guid id = Guid.Parse (mediaId);
 
-			StringBuilder builder = new StringBuilder ("http://myhabitat.dev");
-			builder.AppendFormat ("/-/media/{0}.ashx", id.ToString ("N"));
+			if (string.IsNullOrWhiteSpace (websiteUrl))
+				return String.Format("-/media/{0}.ashx", id.ToString ("N"));
 
-			return builder.ToString ();
+			return String.Format("{0}/-/media/{1}.ashx", websiteUrl, id.ToString ("N"));
 
 		}
 

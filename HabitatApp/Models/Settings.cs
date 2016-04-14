@@ -60,6 +60,13 @@
 			get;
 			internal set;
 		}
+
+		public int CachingInHours {
+			get;
+			internal set;
+		}
+
+
 	}
 }
 

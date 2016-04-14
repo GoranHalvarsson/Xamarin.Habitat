@@ -26,6 +26,17 @@ namespace HabitatApp
 				.As<ILoggingService> ()
 				.SingleInstance ();
 
+			builder.RegisterType<RestService> ()
+				.As<IRestService> ()
+				.SingleInstance ();
+
+			builder.RegisterType<CacheValidatorService> ()
+				.As<ICacheValidatorService> ()
+				.SingleInstance ();
+
+			builder.RegisterType<CachedMediaRepository> ()
+				.As<ICachedMediaRepository> ()
+				.SingleInstance ();
 		
 			builder.RegisterType<SitecoreService> ()
 				.As<ISitecoreService> ()

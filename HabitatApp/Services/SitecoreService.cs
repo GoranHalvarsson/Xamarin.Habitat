@@ -1,4 +1,7 @@
-﻿
+﻿using Sitecore.MobileSDK.API.MediaItem;
+using System.IO;
+
+
 namespace HabitatApp.Services
 {
 
@@ -93,6 +96,48 @@ namespace HabitatApp.Services
 			catch(Exception ex)
 			{
 				this._loggingService.Log ("Error in GetItemById,  id {0} . Error: {1}", itemId, ex.Message); 
+				throw ex;
+			}
+
+
+		}
+
+
+		public async Task<Byte[]> GetMediaByUrl(string mediaUrl){
+
+			try {
+
+				using (ISitecoreWebApiSession session = await SitecoreSession) 
+				{
+					
+
+					IMediaResourceDownloadRequest request = ItemWebApiRequestBuilder.DownloadResourceRequestWithMediaPath(mediaUrl)
+						.Build();
+
+					byte[] data = null;
+
+					using (Stream response = await session.DownloadMediaResourceAsync(request))
+					
+					using (MemoryStream responseInMemory = new MemoryStream())
+					{
+						await response.CopyToAsync(responseInMemory);
+
+						data = responseInMemory.ToArray();
+
+						return data;
+					}
+
+				}
+
+			} 
+			catch(SitecoreMobileSdkException ex)
+			{
+				this._loggingService.Log ("Error in GetMediaByUrl,  url {0} . Error: {1}", mediaUrl, ex.Message); 
+				throw ex;
+			}
+			catch(Exception ex)
+			{
+				this._loggingService.Log ("Error in GetMediaByUrl,  url {0} . Error: {1}", mediaUrl, ex.Message); 
 				throw ex;
 			}
 

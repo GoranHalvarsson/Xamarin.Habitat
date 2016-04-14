@@ -38,7 +38,8 @@
 				SitecoreDefaultLanguage = "en",
 				SitecoreMediaLibraryRoot = "/sitecore/media library",
 				SitecoreMediaPrefix = "~/media/",
-				SitecoreDefaultMediaResourceExtension = "ashx"
+				SitecoreDefaultMediaResourceExtension = "ashx",
+				CachingInHours = 12
 
 			};
 

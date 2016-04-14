@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+
+
 namespace HabitatApp.Services
 {
 	using System.Collections.Generic;
@@ -7,10 +9,20 @@ namespace HabitatApp.Services
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
 	using System.Linq;
+	using HabitatApp.Repositories;
 
 	public class ListItemService : IListItemService
 	{
-		
+
+		private readonly ILoggingService _loggingService;
+		private readonly ICachedMediaRepository _cachedMediaRepository;
+
+		public ListItemService (ICachedMediaRepository cachedMediaRepository, ILoggingService loggingService)
+		{
+			_cachedMediaRepository = cachedMediaRepository;
+			_loggingService = loggingService;
+		}
+
 		public async Task<IEnumerable<ListItem>> GenerateListItemsFromTeasers(IList<ScItemsResponse> itemsResponse)
 		{
 
@@ -30,7 +42,7 @@ namespace HabitatApp.Services
 					Text = item.GetValueFromField(Constants.Sitecore.Fields.Teasers.TeaserSummary),
 					NavigationItem = item.GetItemIdFromLinkField(Constants.Sitecore.Fields.Teasers.TeaserLink),
 					NavigationText = item.GetTextFromLinkField(Constants.Sitecore.Fields.Teasers.TeaserLink),
-					ImageUrl = item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.Teasers.TeaserImage)	
+					Media =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.Teasers.TeaserImage))	
 
 
 				};
@@ -62,8 +74,8 @@ namespace HabitatApp.Services
 					Text = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Summary),
 					NavigationItem = item.Id,
 					NavigationText = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Title),
-					ImageUrl = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image)	
-
+					Media =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.PageContent.Image))	
+	
 				};
 
 				list.Add (listlItem);
@@ -80,8 +92,8 @@ namespace HabitatApp.Services
 			return new ListItem{
 				Header = "Extensibility",
 				Text = "A consistent and discoverable architecture",
-				ImageUrl = "http://habitat.sitecore.net/-/media/Habitat/Images/Wide/Habitat-001-wide.jpg"	
-
+				Media =  _cachedMediaRepository.Create(Guid.NewGuid(),"http://habitat.sitecore.net/-/media/Habitat/Images/Wide/Habitat-001-wide.jpg")	
+		
 			};
 		}
 

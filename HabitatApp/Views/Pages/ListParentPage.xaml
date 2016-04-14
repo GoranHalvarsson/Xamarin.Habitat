@@ -22,7 +22,7 @@
 								<RowDefinition Height="200" />
 							</Grid.RowDefinitions>
 							<Grid Grid.Row="0" Padding="0,0,0,10">
-								<Image Aspect="AspectFill" Source="{Binding ContentImage, Converter={StaticResource imageConverter}}" />
+								<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
 								<StackLayout Padding="10,10,10,20">
 									<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
 										<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />

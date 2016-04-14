@@ -9,6 +9,7 @@ namespace HabitatApp.Services
 	using Sitecore.MobileSDK.API.Request.Parameters;
 	using System.Collections.Generic;
 	using HabitatApp.Models;
+	using System;
 
 	public interface ISitecoreService
 	{
@@ -16,9 +17,9 @@ namespace HabitatApp.Services
 
 		Task<ScItemsResponse> GetItemById (string itemId, PayloadType itemLoadType, List<ScopeType> itemScopeTypes, string itemLanguage = "en");
 
-		Task<PageData> GeneratePageData(string itemid, PayloadType itemLoadType, List<ScopeType> itemScopeTypes, string datasourceFieldName, string itemLanguage = "en");
-	
+		Task<Byte[]> GetMediaByUrl(string mediaUrl);
 
+		Task<PageData> GeneratePageData(string itemid, PayloadType itemLoadType, List<ScopeType> itemScopeTypes, string datasourceFieldName, string itemLanguage = "en");
 	
 	}
 }

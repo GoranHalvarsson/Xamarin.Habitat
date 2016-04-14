@@ -8,21 +8,25 @@ namespace HabitatApp.ViewModels.Pages
 	using System.Linq;
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
+	using HabitatApp.Repositories;
 
 	public class SimpleContentPageViewModel: ViewModelBase
 	{
-		public SimpleContentPageViewModel ()
+		private readonly ICachedMediaRepository _cachedMediaRepository;
+
+		public SimpleContentPageViewModel (ICachedMediaRepository cachedMediaRepository)
 		{
-			
+			_cachedMediaRepository = cachedMediaRepository;
 		}
 
-		private string _contentImage = null;
+		private CachedMedia _media;
 
-		public string ContentImage {
+		public CachedMedia ContentMedia {
 			get {
-				return _contentImage;
+				return _media;
 			}
-			set { SetProperty (ref _contentImage, value); }
+			set { SetProperty (ref _media, value); }
+
 		}
 
 		private string _contentHeader = string.Empty;
@@ -64,18 +68,14 @@ namespace HabitatApp.ViewModels.Pages
 
 			SetBusy ("Loading");
 
-			SetData (base.PageContext);
+			await SetData (base.PageContext);
 
 			ClearBusy ();
 
 		}
 
-		public async override Task UnLoadAsync ()
-		{
-			ClearBusy ();
-		}
 
-		private void SetData(PageData pageData){
+		private async Task SetData(PageData pageData){
 
 			ISitecoreItem item = pageData.ItemContext.FirstOrDefault();
 
@@ -84,7 +84,8 @@ namespace HabitatApp.ViewModels.Pages
 			ContentBody = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Body);
 			ContentHeader = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Title);
 			ContentSummary = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Summary);
-			ContentImage = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image);
+
+			ContentMedia =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image));
 
 		} 
 

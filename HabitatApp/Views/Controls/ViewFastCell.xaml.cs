@@ -20,16 +20,16 @@ namespace HabitatApp.Views.Controls
 				return;
 
 
-			UserThumbnailView.ImageUrl = listItem.Item1.ImageUrl ?? "";
-			ImageView.Source = listItem.Item1.ImageUrl ?? "";
-			NameLabel.Text = listItem.Item1.Header;
-			DescriptionLabel.Text = listItem.Item1.Text;
-			UserThumbnailView2. ImageUrl = listItem.Item1.ImageUrl ?? "";
-			UserThumbnailView3.ImageUrl = listItem.Item1.ImageUrl ?? "";
-			UserThumbnailView4.ImageUrl = listItem.Item1.ImageUrl ?? "";
-			UserThumbnailView5.ImageUrl = listItem.Item1.ImageUrl ?? "";
-			UserThumbnailView6.ImageUrl = listItem.Item1.ImageUrl ?? "";
-			UserThumbnailView7.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			ImageView.Source = listItem.Item1.ImageUrl ?? "";
+//			NameLabel.Text = listItem.Item1.Header;
+//			DescriptionLabel.Text = listItem.Item1.Text;
+//			UserThumbnailView2. ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView3.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView4.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView5.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView6.ImageUrl = listItem.Item1.ImageUrl ?? "";
+//			UserThumbnailView7.ImageUrl = listItem.Item1.ImageUrl ?? "";
 
 		}
 	}

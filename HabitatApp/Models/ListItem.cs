@@ -68,13 +68,13 @@ namespace HabitatApp.Models
 		}
 
 
-		private string _imageUrl;
+		private CachedMedia _media;
 
-		public string ImageUrl {
+		public CachedMedia Media {
 			get {
-				return _imageUrl;
+				return _media;
 			}
-			set { SetProperty (ref _imageUrl, value); }
+			set { SetProperty (ref _media, value); }
 
 		}
 	}

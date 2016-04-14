@@ -14,26 +14,31 @@ namespace HabitatApp.ViewModels.Pages
 	using HabitatApp.Services;
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
+	using HabitatApp.Repositories;
 
 	public class ListParentPageViewModel : ViewModelBase
 	{
 		private readonly IListItemService _listItemService;
 		private readonly INavigationService _navigationService;
+		private readonly ICachedMediaRepository _cachedMediaRepository;
 
-		public ListParentPageViewModel (IListItemService listItemService, INavigationService navigationService)
+
+		public ListParentPageViewModel (IListItemService listItemService, INavigationService navigationService, ICachedMediaRepository cachedMediaRepository)
 		{
 			_listItemService = listItemService;
 			_navigationService = navigationService;
+			_cachedMediaRepository = cachedMediaRepository;
 
 		}
 
-		private string _contentImage = null;
+		private CachedMedia _media;
 
-		public string ContentImage {
+		public CachedMedia ContentMedia {
 			get {
-				return _contentImage;
+				return _media;
 			}
-			set { SetProperty (ref _contentImage, value); }
+			set { SetProperty (ref _media, value); }
+
 		}
 
 		private string _contentHeader = string.Empty;
@@ -134,7 +139,7 @@ namespace HabitatApp.ViewModels.Pages
 
 			ContentHeader = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Title);
 			ContentSummary = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Summary);
-			ContentImage = item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image);
+			ContentMedia =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image));
 
 			IEnumerable<ListItem> listItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
 
