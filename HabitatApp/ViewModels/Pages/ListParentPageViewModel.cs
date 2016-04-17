@@ -70,6 +70,17 @@ namespace HabitatApp.ViewModels.Pages
 			}
 		}
 
+		private ObservableCollection<ListItem> _lists = new ObservableCollection<ListItem> ();
+
+		public ObservableCollection<ListItem> Lists {
+			get {
+				return _lists;
+			}
+			set { 
+				SetProperty (ref _lists, value); 
+			}
+		}
+
 
 		private ListItem _listItemSelected;
 
@@ -143,7 +154,9 @@ namespace HabitatApp.ViewModels.Pages
 
 			IEnumerable<ListItem> listItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
 
-			ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
+			Lists = listItems.ToObservableCollection ();
+
+			//ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
 
 		
 

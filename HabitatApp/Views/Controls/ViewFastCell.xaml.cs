@@ -14,7 +14,7 @@ namespace HabitatApp.Views.Controls
 
 		protected override void SetupCell (bool isRecycled)
 		{
-			Tuple<ListItem,ListItem> listItem = BindingContext as Tuple<ListItem,ListItem>;
+			ListItem listItem = BindingContext as ListItem;
 
 			if (listItem == null)
 				return;

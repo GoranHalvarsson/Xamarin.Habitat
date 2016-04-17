@@ -13,11 +13,11 @@ namespace HabitatApp
 
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterModule<HabitatAppModule>();
-			HabitatApp.App.Instance.Container = builder.Build();
+			HabitatApp.App.AppInstance.Container = builder.Build();
 
-			using (ILifetimeScope lifetimeScope = HabitatApp.App.Instance.Container.BeginLifetimeScope())
+			using (ILifetimeScope lifetimeScope = HabitatApp.App.AppInstance.Container.BeginLifetimeScope())
 			{
-				HabitatApp.App.Instance.MainPage = lifetimeScope.Resolve<NavigationMasterPage> ();
+				HabitatApp.App.AppInstance.MainPage = lifetimeScope.Resolve<NavigationMasterPage> ();
 			}
 		}
 	}

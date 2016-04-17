@@ -14,7 +14,7 @@ namespace HabitatApp.Views.Pages
 
 		private NavigationMasterViewModel _navigationMasterViewModel;
 
-		public NavigationMasterPage () : this(HabitatApp.App.Instance.Container.Resolve<NavigationMasterViewModel>())
+		public NavigationMasterPage () : this(HabitatApp.App.AppInstance.Container.Resolve<NavigationMasterViewModel>())
 		{
 
 		}
@@ -25,9 +25,9 @@ namespace HabitatApp.Views.Pages
 
 			_navigationMasterViewModel = navigationMasterViewModel;
 
-			BindingContext = _navigationMasterViewModel;
-
 			_navigationMasterViewModel.ConnectedToPage = this;
+
+			BindingContext = _navigationMasterViewModel;
 
 		}
 

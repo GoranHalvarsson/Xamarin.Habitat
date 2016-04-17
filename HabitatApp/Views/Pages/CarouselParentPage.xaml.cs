@@ -11,7 +11,7 @@
 	{
 		private readonly CarouselParentPageViewModel _carouselParentPageViewModel;
 
-		public CarouselParentPage() : this(App.Instance.Container.Resolve<CarouselParentPageViewModel>())
+		public CarouselParentPage() : this(App.AppInstance.Container.Resolve<CarouselParentPageViewModel>())
 		{
 
 		}
@@ -21,6 +21,8 @@
 			InitializeComponent ();
 
 			_carouselParentPageViewModel = carouselParentPageViewModel;
+
+			_carouselParentPageViewModel.ConnectedToPage = this;
 
 			BindingContext = _carouselParentPageViewModel;
 

@@ -10,7 +10,7 @@
 	{
 		private readonly StartPageViewModel _startPageViewModel;
 
-		public StartPage() : this(App.Instance.Container.Resolve<StartPageViewModel>())
+		public StartPage() : this(App.AppInstance.Container.Resolve<StartPageViewModel>())
 		{
 
 		}
@@ -20,6 +20,8 @@
 			InitializeComponent ();
 
 			_startPageViewModel = startPageViewModel;
+
+			_startPageViewModel.ConnectedToPage = this;
 
 			BindingContext = _startPageViewModel;
 

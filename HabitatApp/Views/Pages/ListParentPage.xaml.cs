@@ -14,7 +14,7 @@ namespace HabitatApp.Views.Pages
 	{
 		private readonly ListParentPageViewModel _listParentPageViewModel;
 
-		public ListParentPage() : this(App.Instance.Container.Resolve<ListParentPageViewModel>())
+		public ListParentPage() : this(App.AppInstance.Container.Resolve<ListParentPageViewModel>())
 		{
 
 		}
@@ -24,6 +24,8 @@ namespace HabitatApp.Views.Pages
 			InitializeComponent ();
 
 			_listParentPageViewModel = listParentPageViewModel;
+
+			_listParentPageViewModel.ConnectedToPage = this;
 
 			BindingContext = _listParentPageViewModel;
 

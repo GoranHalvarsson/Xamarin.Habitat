@@ -9,7 +9,7 @@
 		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
 			<ListView x:Name="MediaItemsListView" 
 				BackgroundColor="{DynamicResource HabitatBackgroundColor}" 
-				ItemsSource="{Binding ListItems}" 
+				ItemsSource="{Binding Lists}" 
 				SelectedItem="{Binding ListItemSelected}" 
 				SeparatorVisibility="None" 
 				HorizontalOptions="FillAndExpand" 

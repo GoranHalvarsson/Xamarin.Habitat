@@ -115,6 +115,7 @@
     <Compile Include="Models\CachedData.cs" />
     <Compile Include="Repositories\CachedMediaRepository.cs" />
     <Compile Include="Repositories\ICachedMediaRepository.cs" />
+    <Compile Include="Triggers\FadeTriggerAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -193,6 +194,7 @@
     <Folder Include="ViewModels\Pages\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Exceptions\Rest\" />
+    <Folder Include="Triggers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Controls\Carousel\CarouselView.xaml">

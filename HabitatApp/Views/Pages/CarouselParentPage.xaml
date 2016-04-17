@@ -5,6 +5,7 @@
 	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp" 
 	Title="{Binding Title}" 
 	x:Name="rootPage" 
+	xmlns:trigger="clr-namespace:HabitatApp.Triggers;assembly=HabitatApp"
 	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 	<ScrollView>
 		<Grid>
@@ -28,7 +29,7 @@
 					<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,5,10,0" VerticalOptions="StartAndExpand" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.98}" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
 						<carousel:CarouselView.ItemTemplate>
 							<DataTemplate>
-								<Grid>
+								<Grid RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.5}">
 									<Image x:Name="IndicatorRef" Opacity="{Binding Source={x:Reference rootPage}, Path=BindingContext.LongPressedOpacity}" Source="{Binding Media, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
 										<Image.GestureRecognizers>
 											<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />

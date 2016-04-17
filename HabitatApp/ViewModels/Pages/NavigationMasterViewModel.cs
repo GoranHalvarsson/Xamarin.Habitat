@@ -73,15 +73,17 @@ namespace HabitatApp.ViewModels.Pages
 		/// <returns>The async.</returns>
 		public async override Task LoadAsync()
 		{
-			await SetMenu ();
 
-			MenuIcon = "HamburgerIcon.png";
+			await HabitatApp.App.AppInstance.ExecuteIfConnected (async () => {
 
-			if(MenuItems.Any())
-				MenuItemSelected = MenuItems.ElementAt (0);
+				await SetMenu ();
 
+				if(MenuItems.Any())
+					MenuItemSelected = MenuItems.ElementAt (0);
 
-			//Something has happened, we should inform user etc
+				MenuIcon = "HamburgerIcon.png";
+
+			});
 
 
 		}
@@ -118,14 +120,6 @@ namespace HabitatApp.ViewModels.Pages
 			((NavigationMasterPage)ConnectedToPage).IsPresented = false;
 			((NavigationMasterPage)ConnectedToPage).Detail = nav;
 
-
-
-//			Page splashPage = nav.Navigation.NavigationStack[0];
-//
-//			if (typeof (SplashPage) == splashPage.GetType()) 
-//				return;
-//			
-//			nav.Navigation.RemovePage(splashPage);
 
 		}
 

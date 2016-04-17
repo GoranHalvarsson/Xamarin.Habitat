@@ -101,7 +101,8 @@
 
 			CachedMedia cachedMedia = null;
 
-			try {
+			try 
+			{
 
 				cachedMedia = await this._asyncConnection.FindAsync<CachedMedia> (url);
 
@@ -181,9 +182,9 @@
 
 			try {
 
-				cachedMedia.MediaData = await _restService.GetAsync<Byte[]>(await GeneratRestUrl(cachedMedia.Url), CancellationToken.None);
+				//cachedMedia.MediaData = await _restService.GetAsync<Byte[]>(await GeneratRestUrl(cachedMedia.Url), CancellationToken.None);
 
-				//cachedMedia.MediaData = await _sitecoreService.GetMediaByUrl(cachedMedia.Url);
+				cachedMedia.MediaData = await _sitecoreService.GetMediaByUrl(cachedMedia.Url);
 
 				await this.Save (cachedMedia);
 

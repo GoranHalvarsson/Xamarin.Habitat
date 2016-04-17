@@ -1,4 +1,6 @@
-﻿
+﻿using Plugin.Connectivity;
+using System.Threading.Tasks;
+using System;
 
 namespace HabitatApp
 {
@@ -11,17 +13,40 @@ namespace HabitatApp
 
 		public IContainer Container;
 
-		public static App Instance; 
+		public static App AppInstance; 
 
 		public App ()
 		{
-			Instance = this;
+			AppInstance = this;
 
 			InitializeComponent();
 
 			Bootstrapper.Run();
 
 		}
+
+		public async Task ExecuteIfConnected(Func<Task> actionToExecuteIfConnected)
+		{
+			if (CrossConnectivity.Current.IsConnected)
+			{
+				await actionToExecuteIfConnected();
+			}
+			else
+			{
+				await ShowNetworkConnectionAlert();
+			}
+		}
+
+
+
+		private async Task ShowNetworkConnectionAlert()
+		{
+			await AppInstance.MainPage.DisplayAlert(
+				"Network Issues", 
+				"Some issues with network", 
+				"Close");
+		}
+
 
 		protected override void OnStart ()
 		{

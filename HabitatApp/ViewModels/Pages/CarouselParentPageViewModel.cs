@@ -162,10 +162,7 @@ namespace HabitatApp.ViewModels.Pages
 
 		}
 
-		public async override Task UnLoadAsync ()
-		{
-			ClearBusy ();
-		}
+
 
 	
 	}

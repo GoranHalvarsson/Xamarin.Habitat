@@ -44,13 +44,11 @@ namespace HabitatApp.Services
 				return null;
 
 			//Load page by page type
-			Page currentPage = HabitatApp.App.Instance.Container.Resolve(pageType) as Page;
+			Page currentPage = HabitatApp.App.AppInstance.Container.Resolve(pageType) as Page;
 		
 			IViewModel viewModel = (IViewModel)currentPage.BindingContext;
 
 			viewModel.PageContext = pageData;
-
-			viewModel.ConnectedToPage = currentPage;
 
 			return currentPage;
 
@@ -93,7 +91,13 @@ namespace HabitatApp.Services
 
 			//We need to load it all before page appears
 			//Page.Appering() gives an unfortunate delay
-			await viewModel.LoadAsync ();
+			viewModel.LoadAsync ();
+
+			//navigateToPage.Appearing += async (object sender, EventArgs e) => await viewModel.LoadAsync ();
+
+			//navigateToPage.Disappearing += async (object sender, EventArgs e) => await viewModel.UnLoadAsync ();
+
+
 
 			await navigateFromPage.Navigation.PushAsync (navigateToPage);
 		}

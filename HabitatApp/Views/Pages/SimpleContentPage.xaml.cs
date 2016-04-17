@@ -12,7 +12,7 @@ namespace HabitatApp.Views.Pages
 	{
 		private readonly SimpleContentPageViewModel _simpleContentPageViewModel;
 
-		public SimpleContentPage() : this(App.Instance.Container.Resolve<SimpleContentPageViewModel>())
+		public SimpleContentPage() : this(App.AppInstance.Container.Resolve<SimpleContentPageViewModel>())
 		{
 
 		}
@@ -22,6 +22,8 @@ namespace HabitatApp.Views.Pages
 			InitializeComponent ();
 
 			_simpleContentPageViewModel = simpleContentPageViewModel;
+
+			_simpleContentPageViewModel.ConnectedToPage = this;
 
 			BindingContext = _simpleContentPageViewModel;
 

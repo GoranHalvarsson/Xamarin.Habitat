@@ -49,6 +49,7 @@ namespace HabitatApp.ViewModels
 
 		private Page _connectedToPage;
 
+
 		public Page ConnectedToPage
 		{
 			get { return _connectedToPage; }

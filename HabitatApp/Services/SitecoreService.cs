@@ -107,11 +107,13 @@ namespace HabitatApp.Services
 
 			try {
 
+				mediaUrl = CleanUpMediaUrlByReplacingWeirdTildeSignWithCorrect(mediaUrl);
+
 				using (ISitecoreWebApiSession session = await SitecoreSession) 
 				{
-					
 
 					IMediaResourceDownloadRequest request = ItemWebApiRequestBuilder.DownloadResourceRequestWithMediaPath(mediaUrl)
+						.Language("en")
 						.Build();
 
 					byte[] data = null;
@@ -204,6 +206,18 @@ namespace HabitatApp.Services
 
 			return sitecoreItems;
 
+		}
+
+		private static string CleanUpMediaUrlByReplacingWeirdTildeSignWithCorrect(string mediaUrl){
+
+			if(mediaUrl.IndexOf('~') > 0)
+				return mediaUrl;
+
+			mediaUrl = mediaUrl.Substring(1);
+
+			mediaUrl = "~" + mediaUrl; 
+
+			return mediaUrl;
 		}
 
 		private async Task<ScItemsResponse> GetDatasourceFromChildren(ISitecoreItem sitecoreItem){
