@@ -70,38 +70,6 @@ namespace HabitatApp.ViewModels.Pages
 			}
 		}
 
-		private ObservableCollection<ListItem> _lists = new ObservableCollection<ListItem> ();
-
-		public ObservableCollection<ListItem> Lists {
-			get {
-				return _lists;
-			}
-			set { 
-				SetProperty (ref _lists, value); 
-			}
-		}
-
-
-		private ListItem _listItemSelected;
-
-		public ListItem ListItemSelected {
-			get {
-				return _listItemSelected;
-			}
-			set {
-				SetProperty (ref _listItemSelected, value);
-
-				if (_listItemSelected != null) {
-
-					//Async?
-					_navigationService.NavigateToPageByItemId(ConnectedToPage, _listItemSelected.NavigationItem);
-
-				}
-
-			}
-
-		}
-
 
 		private Command _linkSelectedCommand;
 		public ICommand LinkSelectedCommand
@@ -154,18 +122,12 @@ namespace HabitatApp.ViewModels.Pages
 
 			IEnumerable<ListItem> listItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
 
-			Lists = listItems.ToObservableCollection ();
 
-			//ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
+			ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
 
-		
 
 		}
 
-		public async override Task UnLoadAsync ()
-		{
-			ClearBusy ();
-		}
 
 	
 	}

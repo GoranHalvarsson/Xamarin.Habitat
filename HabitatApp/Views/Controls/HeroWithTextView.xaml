@@ -4,34 +4,8 @@
 	x:Class="HabitatApp.Views.Controls.HeroWithTextView">
 	<ContentView.Content>
 		<StackLayout Orientation="Vertical" Padding="10,0,10,0">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="200" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-				<Grid Grid.Row="0" Padding="0">
-					<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
-					<StackLayout Padding="10">
-						<StackLayout Opacity="0.7" BackgroundColor="{StaticResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
-							<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />
-							<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
-								<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
-							</StackLayout>
-						</StackLayout>
-					</StackLayout>
-				</Grid>
-				<StackLayout Grid.Row="1" Padding="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Orientation="Horizontal">
-					<Label x:Name="bodyLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentBody, Converter={StaticResource htmlConverter}}" />
-				</StackLayout>
-			</Grid>
-		</StackLayout>
-	</ContentView.Content>
-</ContentView>
-
-
-
-<!--					<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
-					<StackLayout Padding="10,0,10,0">
+				<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
+					<StackLayout Padding="0">
 						<StackLayout Opacity="0.7" BackgroundColor="{StaticResource HabitatBackgroundColor}"  HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
 							<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />
 							<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
@@ -39,6 +13,10 @@
 							</StackLayout>
 						</StackLayout>
 					</StackLayout>
-				<StackLayout Padding="10,0,10,0" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+				<StackLayout Padding="0" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Orientation="Horizontal">
 					<Label x:Name="bodyLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentBody, Converter={StaticResource htmlConverter}}" />
-				</StackLayout>-->
+				</StackLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
+

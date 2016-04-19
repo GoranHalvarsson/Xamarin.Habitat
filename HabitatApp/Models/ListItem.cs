@@ -17,6 +17,16 @@ namespace HabitatApp.Models
 
 		}
 
+		private string _group;
+
+		public string Group {
+			get {
+				return _group;
+			}
+			set { SetProperty (ref _group, value); }
+
+		}
+
 		private string _header;
 
 		public string Header {

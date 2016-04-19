@@ -29,6 +29,10 @@ namespace HabitatApp.Views.Pages
 
 			BindingContext = _listParentPageViewModel;
 
+			MediaItemsListView.ItemSelected += (s, e) => {
+				MediaItemsListView.SelectedItem = null; 
+			};
+
 		}
 	}
 }

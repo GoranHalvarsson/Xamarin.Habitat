@@ -6,7 +6,7 @@ namespace HabitatApp.Views.Controls
 {
 	using Xamarin.Forms;
 
-	public abstract class FastCell : ViewCell
+	public abstract class FastCell : ViewCellNonSelectable
 	{
 		public bool IsInitialized {
 			get;

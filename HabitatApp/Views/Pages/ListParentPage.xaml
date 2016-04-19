@@ -3,17 +3,18 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 	x:Class="HabitatApp.Views.Pages.ListParentPage" 
 	xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp" 
-	Title="{Binding Title}" x:Name="rootPage" 
+	Title="{Binding Title}" 
+	x:Name="rootPage" 
 	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 	<ScrollView>
 		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
 			<ListView x:Name="MediaItemsListView" 
 				BackgroundColor="{DynamicResource HabitatBackgroundColor}" 
-				ItemsSource="{Binding Lists}" 
+				ItemsSource="{Binding ListItems}" 
 				SelectedItem="{Binding ListItemSelected}" 
 				SeparatorVisibility="None" 
 				HorizontalOptions="FillAndExpand" 
-				Header="{Binding}" 
+				Header = "{Binding}" 
 				RowHeight="200">
 				<ListView.HeaderTemplate>
 					<DataTemplate>
@@ -21,7 +22,7 @@
 							<Grid.RowDefinitions>
 								<RowDefinition Height="200" />
 							</Grid.RowDefinitions>
-							<Grid Grid.Row="0" Padding="0,0,0,10">
+							<Grid Grid.Row="0" Padding="10,0,10,10">
 								<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
 								<StackLayout Padding="10,10,10,20">
 									<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
@@ -37,9 +38,66 @@
 				</ListView.HeaderTemplate>
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<control:ViewFastCell />
+						<control:ViewCellNonSelectable>
+							<Grid Padding="10,0,10,0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="200" />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Grid Grid.Row="0" Grid.Column="0" Padding="0,0,0,10">
+									<Image Opacity="0.5" Aspect="AspectFill"  Source="{Binding Item1.Media, Converter={StaticResource imageConverter}}">
+										<Image.GestureRecognizers>
+												<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding Item1.NavigationItem}" />
+										</Image.GestureRecognizers>
+									</Image>
+									<StackLayout Padding="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+										<StackLayout.GestureRecognizers>
+												<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding Item1.NavigationItem}" />
+										</StackLayout.GestureRecognizers>
+										<Label VerticalOptions="EndAndExpand" Text="{Binding Item1.Header}" Style="{DynamicResource ArticleLightTextStyle}" />
+									</StackLayout>
+									
+								</Grid>
+								<Grid Grid.Row="0" Grid.Column="1" Padding="0,0,0,10">
+									<Image Opacity="0.2" Aspect="AspectFill" Source="{Binding Item2.Media, Converter={StaticResource imageConverter}}" >
+										<Image.GestureRecognizers>
+												<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding Item2.NavigationItem}" />
+										</Image.GestureRecognizers>
+									</Image>
+									<StackLayout Padding="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+										<StackLayout.GestureRecognizers>
+												<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding Item2.NavigationItem}" />
+										</StackLayout.GestureRecognizers>
+										<Label  VerticalOptions="EndAndExpand" Text="{Binding Item2.Header}" Style="{DynamicResource ArticleLightTextStyle}" />
+									</StackLayout>
+									
+								</Grid>
+							</Grid>
+						</control:ViewCellNonSelectable>
 					</DataTemplate>
 				</ListView.ItemTemplate>
+<!--				<ListView.GroupHeaderTemplate>
+	                <DataTemplate>
+	                	<ViewCell>
+	              
+	                		
+						
+									<Image  Aspect="AspectFill" Source="{Binding Source={x:Reference rootPage}, Path=BindingContext.ContentMedia, Converter={StaticResource imageConverter}}" />
+									<StackLayout Padding="10,10,10,20">
+										<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+											<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding Source={x:Reference rootPage}, Path=BindingContext.ContentHeader}" Style="{DynamicResource HeaderStyle}" />
+											<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
+												<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding Source={x:Reference rootPage}, Path=BindingContext.ContentSummary, Converter={StaticResource htmlConverter}}" />
+											</StackLayout>
+										</StackLayout>
+									</StackLayout>
+						
+	                	</ViewCell>
+	                </DataTemplate>
+            	</ListView.GroupHeaderTemplate>-->
 			</ListView>
 		</StackLayout>
 	</ScrollView>

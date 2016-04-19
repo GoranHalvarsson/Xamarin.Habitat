@@ -29,6 +29,11 @@ namespace HabitatApp.Views.Pages
 
 			BindingContext = _navigationMasterViewModel;
 
+			listView.ItemSelected += (s, e) => {
+				listView.SelectedItem = null; 
+			};
+
+
 		}
 
 

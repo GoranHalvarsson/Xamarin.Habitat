@@ -136,17 +136,15 @@ namespace HabitatApp.ViewModels.Pages
 
 			SetBusy ("Loading");
 
-			PageData pageData = base.PageContext;
-
-			await SetData (pageData);
+			await SetData ();
 
 			ClearBusy ();
 
 		}
 
-		private async Task SetData(PageData pageData){
+		private async Task SetData(){
 			
-			ISitecoreItem item = pageData.ItemContext.FirstOrDefault ();
+			ISitecoreItem item = base.PageContext.ItemContext.FirstOrDefault ();
 
 			base.Title = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Title);
 
@@ -154,7 +152,7 @@ namespace HabitatApp.ViewModels.Pages
 			ContentSummary = item.GetValueFromField(Constants.Sitecore.Fields.PageContent.Summary);
 			ContentMedia =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image));
 
-			IEnumerable<ListItem> carouselItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
+			IEnumerable<ListItem> carouselItems = await _listItemService.GenerateListItemsFromChildren(base.PageContext.DataSourceFromChildren);
 
 			CarouselItems = carouselItems.ToObservableCollection ();
 

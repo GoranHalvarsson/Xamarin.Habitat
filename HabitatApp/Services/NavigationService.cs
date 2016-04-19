@@ -89,6 +89,10 @@ namespace HabitatApp.Services
 
 			IViewModel viewModel = (IViewModel)navigateToPage.BindingContext;
 
+
+
+			viewModel.ConnectedToPage = navigateFromPage;
+
 			//We need to load it all before page appears
 			//Page.Appering() gives an unfortunate delay
 			viewModel.LoadAsync ();

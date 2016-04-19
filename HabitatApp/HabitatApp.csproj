@@ -103,9 +103,6 @@
     <Compile Include="Models\ListItem.cs" />
     <Compile Include="Services\IListItemService.cs" />
     <Compile Include="Services\ListItemService.cs" />
-    <Compile Include="Views\Controls\ViewFastCell.xaml.cs">
-      <DependentUpon>ViewFastCell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Services\RestService.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Exceptions\Rest\MethodFailedException.cs" />
@@ -116,6 +113,7 @@
     <Compile Include="Repositories\CachedMediaRepository.cs" />
     <Compile Include="Repositories\ICachedMediaRepository.cs" />
     <Compile Include="Triggers\FadeTriggerAction.cs" />
+    <Compile Include="Models\GroupingCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -222,9 +220,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Pages\ListParentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\ViewFastCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
