@@ -9,7 +9,7 @@ Screendumps IOS:
 ![startpage](https://cloud.githubusercontent.com/assets/726479/14654173/b1c19410-067c-11e6-8f5d-29c538055e76.PNG)
 ![navigation](https://cloud.githubusercontent.com/assets/726479/14654185/bad5dd4a-067c-11e6-8fd4-cc603d10b1cc.PNG)
 ![carouselparentpage](https://cloud.githubusercontent.com/assets/726479/14654193/c2cadd3e-067c-11e6-9db0-7f64e262636c.PNG)
-![listparentpage](https://cloud.githubusercontent.com/assets/726479/14654209/ca4ff080-067c-11e6-971d-23f7dadf82a4.PNG)
+<img src="https://cloud.githubusercontent.com/assets/726479/14675183/0714701e-0708-11e6-9620-d30968d102c2.PNG" width="180px"/>
 
 
 Screendumps Android:
