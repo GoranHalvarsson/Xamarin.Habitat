@@ -1,10 +1,10 @@
-﻿using Plugin.Connectivity;
-using System.Threading.Tasks;
-using System;
+﻿
 
 namespace HabitatApp
 {
-
+	using Plugin.Connectivity;
+	using System.Threading.Tasks;
+	using System;
 	using Xamarin.Forms;
 	using Autofac;
 
@@ -24,29 +24,6 @@ namespace HabitatApp
 			Bootstrapper.Run();
 
 		}
-
-		public async Task ExecuteIfConnected(Func<Task> actionToExecuteIfConnected)
-		{
-			if (CrossConnectivity.Current.IsConnected)
-			{
-				await actionToExecuteIfConnected();
-			}
-			else
-			{
-				await ShowNetworkConnectionAlert();
-			}
-		}
-
-
-
-		private async Task ShowNetworkConnectionAlert()
-		{
-			await AppInstance.MainPage.DisplayAlert(
-				"Network Issues", 
-				"Some issues with network", 
-				"Close");
-		}
-
 
 		protected override void OnStart ()
 		{

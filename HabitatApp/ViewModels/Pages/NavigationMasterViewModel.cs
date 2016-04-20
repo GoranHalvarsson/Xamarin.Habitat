@@ -1,4 +1,5 @@
-﻿
+﻿using System.Windows.Input;
+using Plugin.Connectivity;
 
 namespace HabitatApp.ViewModels.Pages
 {
@@ -56,6 +57,15 @@ namespace HabitatApp.ViewModels.Pages
 
 		}
 
+		private string _habitatLogo;
+
+		public String HabitatLogo {
+			get {
+				return _habitatLogo;
+			}
+			set { SetProperty (ref _habitatLogo, value); }
+
+		}
 
 		private string _menuIcon;
 
@@ -67,6 +77,32 @@ namespace HabitatApp.ViewModels.Pages
 
 		}
 
+		private bool _connectionOk = true;
+
+		public bool ConnectionOk {
+			get {
+				return _connectionOk;
+			}
+			set { SetProperty (ref _connectionOk, value); }
+
+		}
+
+
+		private Command _reStartCommand;
+		public ICommand ReStartCommand
+		{
+			get
+			{
+				if (_reStartCommand == null)
+				{
+					_reStartCommand = new Command (async (parameter) => await SetData ());
+				}
+
+				return _reStartCommand;
+			}
+		}
+
+
 		/// <summary>
 		/// Loads the async.
 		/// </summary>
@@ -74,21 +110,44 @@ namespace HabitatApp.ViewModels.Pages
 		public async override Task LoadAsync()
 		{
 
-			await HabitatApp.App.AppInstance.ExecuteIfConnected (async () => {
+			HabitatLogo = "HabitatSmallTransparent.png"; 
 
-				await SetMenu ();
-
-				if(MenuItems.Any())
-					MenuItemSelected = MenuItems.ElementAt (0);
-
-				MenuIcon = "HamburgerIcon.png";
-
-			});
-
+			await SetData ();
 
 		}
 
+		private async Task SetData(){
+		
+			ConnectionOk = true;
 
+			if (!CrossConnectivity.Current.IsConnected) {
+				await App.AppInstance.MainPage.DisplayAlert("Network Issues", "Some issues with network", "Close");
+				ConnectionOk = false;  
+				return;
+			}
+
+			bool siteIsUp = await CrossConnectivity.Current.IsRemoteReachable("http://myhabitat.dev");
+
+			if (!siteIsUp){
+				ConnectionOk = false;
+				await App.AppInstance.MainPage.DisplayAlert("Website issues", "Website is not reachable", "Close");
+				return;
+			}
+
+
+			IEnumerable<NavigationMenuItem> menuItems = await _navigationMenuService.GenerateMenuItems ();
+
+			if (menuItems == null)
+				return;
+
+			MenuItems = menuItems.Where(item => item.ShowInMenu).ToObservableCollection();
+
+			if(MenuItems.Any())
+				MenuItemSelected = MenuItems.ElementAt (0);
+
+			MenuIcon = "HamburgerIcon.png";
+
+		} 
 
 		/// <summary>
 		/// Sets the menu.

@@ -16,6 +16,8 @@
 			<conv:ImageUrlToImageSourceConverter x:Key="imageConverter" />
 			<conv:HtmlConverter x:Key="htmlConverter" />
 			<conv:HtmlSourceConverter x:Key="htmlSourceConverter" />
+			<conv:BooleanNegationConverter x:Key="boolNegationConverter" />
+
 
 
 

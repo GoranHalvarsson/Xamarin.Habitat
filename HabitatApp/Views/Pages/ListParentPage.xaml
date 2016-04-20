@@ -62,7 +62,7 @@
 									
 								</Grid>
 								<Grid Grid.Row="0" Grid.Column="1" Padding="0,0,0,10">
-									<Image Opacity="0.2" Aspect="AspectFill" Source="{Binding Item2.Media, Converter={StaticResource imageConverter}}" >
+									<Image Opacity="0.5" Aspect="AspectFill" Source="{Binding Item2.Media, Converter={StaticResource imageConverter}}" >
 										<Image.GestureRecognizers>
 												<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding Item2.NavigationItem}" />
 										</Image.GestureRecognizers>

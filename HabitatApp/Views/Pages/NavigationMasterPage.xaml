@@ -38,9 +38,10 @@
 		BackgroundColor = "{DynamicResource HabitatBackgroundColor}"
 		Title="Habitat">
 			<StackLayout VerticalOptions="Center">
-				<ActivityIndicator IsVisible="True" IsRunning="True" Color="White" />
-		    	<Label Text="Loading" VerticalOptions="Center" HorizontalOptions="Center" />
-		  	</StackLayout>
+				<Image Aspect="AspectFit" Source="{Binding HabitatLogo}" VerticalOptions="Center" HorizontalOptions="Center"/>
+				<ActivityIndicator IsVisible="{Binding ConnectionOk, Mode=TwoWay}" IsRunning="{Binding ConnectionOk, Mode=TwoWay, }" Color="White" />
+				<Button Text="REFRESH CONNECTION" VerticalOptions="Center"  Command="{Binding ReStartCommand}" HorizontalOptions="Center" IsVisible="{Binding ConnectionOk, Converter={StaticResource boolNegationConverter}}" />
+		   	</StackLayout>
 		</ContentPage>
 	</MasterDetailPage.Detail>
 </MasterDetailPage>
