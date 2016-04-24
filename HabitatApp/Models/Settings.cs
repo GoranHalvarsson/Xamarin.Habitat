@@ -8,62 +8,62 @@
 		[PrimaryKey]
 		public string RestBaseUrl {
 			get;
-			internal set;
+			set;
 		}
 
 		public string SitecoreNavigationRootPath {
 			get;
-			internal set;
+			set;
 		}
 
 		public string SitecoreNavigationRootId {
 			get;
-			internal set;
+			set;
 		}
 
 		public string SitecoreUserName {
 			get;
-			internal set;
+			set;
 		}
 
 		public string SitecorePassword {
 			get;
-			internal set;
+			set;
 		}
 
 		public string SitecoreShellSite {
 			get;
-			internal set;
+			 set;
 		}
 
 		public string SitecoreDefaultDatabase {
 			get;
-			internal set;
+			 set;
 		}
 
 		public string SitecoreDefaultLanguage {
 			get;
-			internal set;
+			 set;
 		}
 
 		public string SitecoreMediaLibraryRoot {
 			get;
-			internal set;
+			 set;
 		}
 
 		public string SitecoreMediaPrefix {
 			get;
-			internal set;
+			 set;
 		}
 
 		public string SitecoreDefaultMediaResourceExtension {
 			get;
-			internal set;
+			 set;
 		}
 
 		public int CachingInHours {
 			get;
-			internal set;
+			 set;
 		}
 
 

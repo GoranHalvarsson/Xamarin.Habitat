@@ -1,7 +1,4 @@
-﻿using System.Windows.Input;
-using Plugin.Connectivity;
-
-namespace HabitatApp.ViewModels.Pages
+﻿namespace HabitatApp.ViewModels.Pages
 {
 
 	using System;
@@ -14,17 +11,22 @@ namespace HabitatApp.ViewModels.Pages
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
 	using HabitatApp.Views.Pages;
+	using System.Windows.Input;
+	using Plugin.Connectivity;
+	using HabitatApp.Repositories;
+
 
 	public class NavigationMasterViewModel : ViewModelBase
 	{
 		private readonly INavigationMenuService _navigationMenuService;
 		private readonly INavigationService _navigationService;
+		private readonly ISettingsRepository _settingsRepository;
 
-		public NavigationMasterViewModel (INavigationService navigationService, INavigationMenuService navigationMenuService)
+		public NavigationMasterViewModel (INavigationService navigationService, INavigationMenuService navigationMenuService, ISettingsRepository settingsRepository)
 		{
 			_navigationMenuService = navigationMenuService;
 			_navigationService = navigationService;
-
+			_settingsRepository = settingsRepository;
 		}
 
 		private ObservableCollection<NavigationMenuItem> _menuItems = new ObservableCollection<NavigationMenuItem> ();
@@ -112,27 +114,39 @@ namespace HabitatApp.ViewModels.Pages
 
 			HabitatLogo = "HabitatSmallTransparent.png"; 
 
+
 			await SetData ();
 
 		}
 
-		private async Task SetData(){
-		
-			ConnectionOk = true;
+
+		private async Task<bool> NewtWorkAndSiteIsAvailable ()
+		{
+			
 
 			if (!CrossConnectivity.Current.IsConnected) {
-				await App.AppInstance.MainPage.DisplayAlert("Network Issues", "Some issues with network", "Close");
-				ConnectionOk = false;  
-				return;
+				await App.AppInstance.MainPage.DisplayAlert ("Network Issues", "Some issues with network", "Close");
+				return false;
 			}
 
-			bool siteIsUp = await CrossConnectivity.Current.IsRemoteReachable("http://myhabitat.dev");
+			Settings settings = await _settingsRepository.GetWithFallback ();
 
-			if (!siteIsUp){
-				ConnectionOk = false;
+			bool siteIsUp = await CrossConnectivity.Current.IsRemoteReachable (settings.RestBaseUrl);
+
+			if (!siteIsUp) {
 				await App.AppInstance.MainPage.DisplayAlert("Website issues", "Website is not reachable", "Close");
-				return;
+				return false;
 			}
+
+			return true;
+		}
+
+		private async Task SetData(){
+		
+			ConnectionOk = await NewtWorkAndSiteIsAvailable();
+
+			if (!ConnectionOk)
+				return;
 
 
 			IEnumerable<NavigationMenuItem> menuItems = await _navigationMenuService.GenerateMenuItems ();

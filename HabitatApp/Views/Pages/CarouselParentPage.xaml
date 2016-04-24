@@ -17,9 +17,8 @@
 				<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
 				<StackLayout Padding="10,10,10,20">
 					<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
-						<Label x:Name="headerLabel" VerticalOptions="EndAndExpand" Text="{Binding ContentHeader}" Style="{DynamicResource HeaderStyle}" />
 						<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
-							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
+							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource HabitatWhiteSubtitleStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
 						</StackLayout>
 					</StackLayout>
 				</StackLayout>

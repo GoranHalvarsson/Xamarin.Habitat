@@ -1,6 +1,4 @@
-﻿using HabitatApp.Extensions;
-
-namespace HabitatApp.Services
+﻿namespace HabitatApp.Services
 {
 	using System;
 	using Xamarin.Forms;
@@ -13,6 +11,7 @@ namespace HabitatApp.Services
 	using HabitatApp.Models;
 	using Autofac;
 	using HabitatApp.ViewModels;
+	using HabitatApp.Extensions;
 
 	public class NavigationService : INavigationService
 	{
@@ -42,9 +41,9 @@ namespace HabitatApp.Services
 
 			if (pageType == null)
 				return null;
-
+			//HabitatApp.App.AppInstance.Container.Resolve(pageType) as Page
 			//Load page by page type
-			Page currentPage = HabitatApp.App.AppInstance.Container.Resolve(pageType) as Page;
+			Page currentPage = Activator.CreateInstance(pageType) as Page;
 		
 			IViewModel viewModel = (IViewModel)currentPage.BindingContext;
 
@@ -90,7 +89,6 @@ namespace HabitatApp.Services
 			IViewModel viewModel = (IViewModel)navigateToPage.BindingContext;
 
 
-
 			viewModel.ConnectedToPage = navigateFromPage;
 
 			//We need to load it all before page appears
@@ -102,8 +100,8 @@ namespace HabitatApp.Services
 			//navigateToPage.Disappearing += async (object sender, EventArgs e) => await viewModel.UnLoadAsync ();
 
 
-
 			await navigateFromPage.Navigation.PushAsync (navigateToPage);
+
 		}
 
 

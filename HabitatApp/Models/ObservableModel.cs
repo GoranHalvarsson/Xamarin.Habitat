@@ -1,10 +1,10 @@
 ﻿namespace HabitatApp.Models
 {
 
-
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
 	using System.Collections.Generic;
+
 
 	public class ObservableModel : INotifyPropertyChanged
 	{
@@ -28,6 +28,11 @@
 			if (handler != null) 
 				handler(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+
+
 	}
+
+
 }
 

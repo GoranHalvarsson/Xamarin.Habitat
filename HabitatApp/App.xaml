@@ -4,7 +4,7 @@
 	x:Class="HabitatApp.App">
 	<Application.Resources>
 		<ResourceDictionary>
-			<OnPlatform x:TypeArguments="Font" Android="Large" iOS="Large" WinPhone="Large" x:Key="HeaderFontSize" />
+			<OnPlatform x:TypeArguments="Font" Android="40" iOS="40" WinPhone="Large" x:Key="HeaderFontSize" />
 			<OnPlatform x:TypeArguments="Color" Android="White" iOS="White" WinPhone="White" x:Key="PrimaryTextColor" />
 			<OnPlatform x:TypeArguments="Color" Android="Black" iOS="Black" WinPhone="Black" x:Key="ArticleTextColor" />
 			<OnPlatform x:TypeArguments="Color" Android="#2E384E" iOS="#2E384E" WinPhone="#2E384E" x:Key="HabitatBackgroundColor" />
@@ -61,6 +61,12 @@
 				<Setter Property="FontSize" Value="15" />
 				<Setter Property="FontFamily" Value="HelveticaNeue" />
 			</Style>
+			<Style x:Key="HabitatValidationTextStyle" TargetType="Label">
+		        <Setter Property="HorizontalOptions" Value="Start" />
+		        <Setter Property="VerticalOptions" Value="Center" />
+		        <Setter Property="FontSize" Value="Micro" />
+		        <Setter Property="FontAttributes" Value="Italic" />
+      		</Style>
 		
 		</ResourceDictionary>
 	</Application.Resources>

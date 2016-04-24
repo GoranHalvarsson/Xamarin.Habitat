@@ -135,6 +135,7 @@
     <Compile Include="CrossDependencies\CustomSecureStringPasswordProvider.cs" />
     <Compile Include="CrossDependencies\SQLiteDB.cs" />
     <Compile Include="Renderers\CarouselLayoutRenderer.cs" />
+    <Compile Include="Renderers\TableViewHideSeparatorLinesRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

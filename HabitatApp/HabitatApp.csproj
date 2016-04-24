@@ -115,6 +115,15 @@
     <Compile Include="Triggers\FadeTriggerAction.cs" />
     <Compile Include="Models\GroupingCollection.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="Views\Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\SettingsPageViewModel.cs" />
+    <Compile Include="Behaviors\UrlValidationBehavior.cs" />
+    <Compile Include="Views\Controls\TableViewHideSeperatorLines.cs" />
+    <Compile Include="Extensions\ImageResourceExtension.cs" />
+    <Compile Include="Converters\BooleanToObjectConverter.cs" />
+    <Compile Include="Behaviors\RegexValidationBehavior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -194,6 +203,8 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Exceptions\Rest\" />
     <Folder Include="Triggers\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Controls\Carousel\CarouselView.xaml">
@@ -223,5 +234,10 @@
     <EmbeddedResource Include="Views\Pages\ListParentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Pages\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\error.png" />
+    <EmbeddedResource Include="Images\success.png" />
   </ItemGroup>
 </Project>

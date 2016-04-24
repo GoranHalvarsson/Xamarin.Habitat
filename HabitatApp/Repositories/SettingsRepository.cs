@@ -63,7 +63,8 @@
 			try {
 				settings = await _asyncConnection.GetAsync<Settings> (s => s.RestBaseUrl != null);
 			} catch (System.Exception ex) {
-				_loggingService.Log ("Error in reading object from DB,  SettingsRepository . Error: {0}", ex.Message); 
+				_loggingService.Log ("Error in reading object from DB,  SettingsRepository . Error: {0}", ex.Message);
+				throw ex;
 			}
 
 			return settings;
@@ -93,6 +94,7 @@
 				await _asyncConnection.UpdateAsync (settings);
 			} catch (Exception ex) {
 				_loggingService.Log ("Error in Update,  SettingsRepository . Error: {0}", ex.Message); 
+				throw ex;
 			} finally { 
 				_repositoryLock.Release ();
 			}
@@ -109,7 +111,9 @@
 			try {
 
 				result = await _asyncConnection.DeleteAllAsync<Settings> ();
-
+			} catch (Exception ex) {
+				_loggingService.Log ("Error in removing it all,  SettingsRepository . Error: {0}", ex.Message); 
+				throw ex;
 			} finally { 
 				_repositoryLock.Release ();
 			}

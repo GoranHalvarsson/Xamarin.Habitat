@@ -59,6 +59,9 @@ namespace HabitatApp
 			builder.RegisterType<NavigationMasterViewModel> ();
 			builder.RegisterType<NavigationMasterPage> ();
 
+			builder.RegisterType<SettingsPageViewModel> ();
+			builder.RegisterType<SettingsPage> ();
+
 			builder.RegisterType<StartPageViewModel> ();
 			builder.RegisterType<StartPage> ();
 

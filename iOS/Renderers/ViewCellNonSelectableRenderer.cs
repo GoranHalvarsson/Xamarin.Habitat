@@ -10,7 +10,7 @@ namespace HabitatApp.iOS.Renderers
 	using UIKit;
 	using Xamarin.Forms.Platform.iOS;
 
-	public class ViewCellNonSelectableRenderer : ViewCellRenderer
+	public class ViewCellNonSelectableRenderer : StandardViewCellRenderer
 	{
 		public override UITableViewCell GetCell(Cell item, UITableViewCell reusableCell, UITableView tv)
 		{
