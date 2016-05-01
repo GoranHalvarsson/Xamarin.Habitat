@@ -70,6 +70,16 @@ namespace HabitatApp.ViewModels.Pages
 			}
 		}
 
+		private ObservableCollection<ListItem> _list = new ObservableCollection<ListItem> ();
+
+		public ObservableCollection<ListItem> ListOfItems {
+			get {
+				return _list;
+			}
+			set { 
+				SetProperty (ref _list, value); 
+			}
+		}
 
 		private Command _linkSelectedCommand;
 		public ICommand LinkSelectedCommand
@@ -108,6 +118,10 @@ namespace HabitatApp.ViewModels.Pages
 
 			ClearBusy ();
 
+
+
+			//UpdateMediaData ();
+
 		}
 
 		private async Task SetData(PageData pageData){
@@ -122,12 +136,22 @@ namespace HabitatApp.ViewModels.Pages
 
 			IEnumerable<ListItem> listItems = await _listItemService.GenerateListItemsFromChildren(pageData.DataSourceFromChildren);
 
-
 			ListItems = listItems.ToList().AsPairsSafe ().ToObservableCollection ();
 
 
 		}
 
+		private async Task UpdateMediaData(){
+
+			foreach (Tuple<ListItem, ListItem> tupleItem in ListItems) {
+
+				await Task.Delay(2000);
+
+				tupleItem.Item1.Media = await _cachedMediaRepository.GetCache (tupleItem.Item1.SitecoreItem.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image));
+				tupleItem.Item2.Media = await _cachedMediaRepository.GetCache (tupleItem.Item2.SitecoreItem.GetImageUrlFromMediaField (Constants.Sitecore.Fields.PageContent.Image));
+			}
+
+		}
 
 	
 	}

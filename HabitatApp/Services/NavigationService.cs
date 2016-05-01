@@ -41,9 +41,9 @@
 
 			if (pageType == null)
 				return null;
-			//HabitatApp.App.AppInstance.Container.Resolve(pageType) as Page
+			
 			//Load page by page type
-			Page currentPage = Activator.CreateInstance(pageType) as Page;
+			Page currentPage = App.AppInstance.Container.Resolve(pageType) as Page;
 		
 			IViewModel viewModel = (IViewModel)currentPage.BindingContext;
 
@@ -61,7 +61,7 @@
 			PageData pageData = await _sitecoreService.GeneratePageData(id, 
 				PayloadType.Content, 
 				new List<ScopeType>(){ ScopeType.Self }, 
-				Constants.Sitecore.Fields.Teasers.AccordeonSelector, 
+				Constants.Sitecore.Fields.Teasers.TeaserSelector, 
 				settings.SitecoreDefaultLanguage);
 
 

@@ -29,10 +29,18 @@ namespace HabitatApp.Views.Pages
 
 			BindingContext = _listParentPageViewModel;
 
+			//We need it for Android
 			MediaItemsListView.ItemSelected += (s, e) => {
 				MediaItemsListView.SelectedItem = null; 
 			};
 
+		}
+
+
+		protected override async void OnDisappearing ()
+		{
+
+			base.OnDisappearing ();
 		}
 	}
 }

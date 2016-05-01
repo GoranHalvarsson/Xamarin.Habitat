@@ -5,7 +5,13 @@
 
 	public class Settings
 	{
+
 		[PrimaryKey]
+		public Guid Id {
+			get;
+			set;
+		}
+
 		public string RestBaseUrl {
 			get;
 			set;

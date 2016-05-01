@@ -4,14 +4,16 @@
 	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp"
 	x:Class="HabitatApp.Views.Controls.Carousel.CarouselView">
 
-	<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Spacing="0" >
+	<StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Padding="0" Spacing="0" Margin="0">
 	         <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Padding="0" >
 						   
 	            <carousel:CarouselLayout x:Name="carouselLayout"
-	                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+	                HorizontalOptions="FillAndExpand" 
+	                VerticalOptions="FillAndExpand"
 	                SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}" 
-	                IndicatorStyle="Dots" ItemsSource="{Binding CarouselItems}" 
-	                SelectedItem="{Binding CurrentCarouselItem, Mode=TwoWay}"
+	                IndicatorStyle="Dots" 
+	                ItemsSource="{Binding CarouselItems}" 
+	                SelectedItem="{Binding CurrentCarouselItem, Mode=TwoWay}" Orientation="Horizontal"
 	                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1.0}"
 	                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=1.0}"
 	                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1.0}"

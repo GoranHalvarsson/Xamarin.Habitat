@@ -3,7 +3,7 @@ using HabitatApp.Views.Controls.Carousel;
 using HabitatApp.Droid.Renderers;
 
 
-[assembly:ExportRenderer(typeof(CarouselLayout), typeof(CarouselLayoutRenderer))]
+[assembly:ExportRenderer (typeof(CarouselLayout), typeof(CarouselLayoutRenderer))]
 namespace HabitatApp.Droid.Renderers
 {
 
@@ -17,20 +17,22 @@ namespace HabitatApp.Droid.Renderers
 	using Android.Graphics;
 	using Java.Lang;
 
-	public class CarouselLayoutRenderer : ScrollViewRenderer {
+	public class CarouselLayoutRenderer : ScrollViewRenderer
+	{
 		int _prevScrollX;
 		int _deltaX;
 		bool _motionDown;
 		Timer _deltaXResetTimer;
 		Timer _scrollStopTimer;
-		HorizontalScrollView _scrollView;
+		//HorizontalScrollView _scrollView;
 
 		protected override void OnElementChanged (VisualElementChangedEventArgs e)
 		{
 			base.OnElementChanged (e);
-			if(e.NewElement == null) return;
+			if (e.NewElement == null)
+				return;
 
-			_deltaXResetTimer = new Timer(100) { AutoReset = false };
+			_deltaXResetTimer = new Timer (100) { AutoReset = false };
 			_deltaXResetTimer.Elapsed += (object sender, ElapsedEventArgs args) => _deltaX = 0;
 
 			_scrollStopTimer = new Timer (200) { AutoReset = false };
@@ -39,18 +41,54 @@ namespace HabitatApp.Droid.Renderers
 			e.NewElement.PropertyChanged += ElementPropertyChanged;
 		}
 
-		void ElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+		void ElementPropertyChanged (object sender, PropertyChangedEventArgs e)
+		{
 			if (e.PropertyName == "Renderer") {
-				_scrollView = (HorizontalScrollView)typeof(ScrollViewRenderer)
-					.GetField ("hScrollView", BindingFlags.NonPublic | BindingFlags.Instance)
-					.GetValue (this);
+//				_scrollView = (HorizontalScrollView)typeof(ScrollViewRenderer)
+//					.GetField ("hScrollView", BindingFlags.NonPublic | BindingFlags.Instance)
+//					.GetValue (this);
 
-				_scrollView.HorizontalScrollBarEnabled = false;
-				_scrollView.Touch += HScrollViewTouch;
+
+
+				this.HorizontalScrollBarEnabled = false;
+//				this.Touch += HScrollViewTouch;
 			}
 			if (e.PropertyName == CarouselLayout.SelectedIndexProperty.PropertyName && !_motionDown) {
 				ScrollToIndex (((CarouselLayout)this.Element).SelectedIndex);
 			}
+		}
+
+		public override bool DispatchTouchEvent (MotionEvent e)
+		{
+
+			switch (e.Action) {
+			case MotionEventActions.Move:
+				_deltaXResetTimer.Stop ();
+				_deltaX = GetScrollIndex () - _prevScrollX;
+				_prevScrollX = GetScrollIndex ();
+
+				UpdateSelectedIndex ();
+
+				_deltaXResetTimer.Start ();
+				break;
+			case MotionEventActions.Down:
+				_motionDown = true;
+				_scrollStopTimer.Stop ();
+				break;
+			case MotionEventActions.Up:
+				_motionDown = false;
+				SnapScroll ();
+				_scrollStopTimer.Start ();
+				break;
+			}
+
+
+			return base.DispatchTouchEvent (e);
+		}
+
+		private Int32 GetScrollIndex ()
+		{
+			return Convert.ToInt32 (((CarouselLayout)(this.Element)).ScrollX);
 		}
 
 		void HScrollViewTouch (object sender, TouchEventArgs e)
@@ -60,8 +98,8 @@ namespace HabitatApp.Droid.Renderers
 			switch (e.Event.Action) {
 			case MotionEventActions.Move:
 				_deltaXResetTimer.Stop ();
-				_deltaX = _scrollView.ScrollX - _prevScrollX;
-				_prevScrollX = _scrollView.ScrollX;
+				_deltaX = this.ScrollX - _prevScrollX;
+				_prevScrollX = this.ScrollX;
 
 				UpdateSelectedIndex ();
 
@@ -79,15 +117,16 @@ namespace HabitatApp.Droid.Renderers
 			}
 		}
 
-		void UpdateSelectedIndex () {
-			var center = _scrollView.ScrollX + (_scrollView.Width / 2);
+		void UpdateSelectedIndex ()
+		{
+			var center = GetScrollIndex () + (this.Width / 2);
 			var carouselLayout = (CarouselLayout)this.Element;
-			carouselLayout.SelectedIndex = (center / _scrollView.Width);
+			carouselLayout.SelectedIndex = (center / this.Width);
 		}
 
 		void SnapScroll ()
 		{
-			var roughIndex = (float)_scrollView.ScrollX / _scrollView.Width;
+			var roughIndex = (float)GetScrollIndex () / this.Width;
 
 			var targetIndex =
 				_deltaX < 0 ? Java.Lang.Math.Floor (roughIndex)
@@ -99,29 +138,30 @@ namespace HabitatApp.Droid.Renderers
 
 		void ScrollToIndex (int targetIndex)
 		{
-			var targetX = targetIndex * _scrollView.Width;
-			_scrollView.Post (new Runnable (() => {
-				_scrollView.SmoothScrollTo(targetX, 0);
+			var targetX = targetIndex * this.Width;
+			this.Post (new Runnable (() => {
+				this.SmoothScrollTo (targetX, 0);
 			}));
 		}
 
 		bool _initialized = false;
+
 		public override void Draw (Canvas canvas)
 		{
 			base.Draw (canvas);
-			if (_initialized) return;
+			if (_initialized)
+				return;
 			_initialized = true;
 			var carouselLayout = (CarouselLayout)this.Element;
-			_scrollView.ScrollTo (carouselLayout.SelectedIndex * Width, 0);
+			this.ScrollTo (carouselLayout.SelectedIndex * Width, 0);
 		}
 
-		protected override void OnSizeChanged(int w, int h, int oldw, int oldh)
+		protected override void OnSizeChanged (int w, int h, int oldw, int oldh)
 		{
-			if(_initialized && (w != oldw))
-			{
+			if (_initialized && (w != oldw)) {
 				_initialized = false;
 			}
-			base.OnSizeChanged(w, h, oldw, oldh);
+			base.OnSizeChanged (w, h, oldw, oldh);
 		}
 	}
 }

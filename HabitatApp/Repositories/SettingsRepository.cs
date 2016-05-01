@@ -28,6 +28,7 @@
 		{
 
 			Settings settings = new Settings () {
+				Id = Guid.NewGuid(),
 				RestBaseUrl =  "http://myhabitat.dev",
 				SitecoreNavigationRootId = "{061E42A3-7CD2-48BC-A611-963DF88AFFE0}",
 				SitecoreNavigationRootPath = "/sitecore/content/Habitat/Mobile App",
@@ -59,15 +60,18 @@
 
 		public async Task<Settings> Get ()
 		{
-			Settings settings = null;
 			try {
-				settings = await _asyncConnection.GetAsync<Settings> (s => s.RestBaseUrl != null);
+
+				int count = await _asyncConnection.Table<Settings>().CountAsync();
+
+				return count == 0 ? null : await _asyncConnection.GetAsync<Settings> (s => s.RestBaseUrl != null);
+
+
 			} catch (System.Exception ex) {
 				_loggingService.Log ("Error in reading object from DB,  SettingsRepository . Error: {0}", ex.Message);
-				throw ex;
+				return null;
 			}
 
-			return settings;
 		}
 
 

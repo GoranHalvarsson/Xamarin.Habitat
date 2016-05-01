@@ -37,7 +37,7 @@ namespace HabitatApp.Services
 					ScopeType.Self,
 					ScopeType.Children
 				}, 
-				Constants.Sitecore.Fields.Teasers.AccordeonSelector, 
+				Constants.Sitecore.Fields.Teasers.TeaserSelector, 
 				settings.SitecoreDefaultLanguage);
 
 			if (rootPageData == null || rootPageData.ItemContext == null)
@@ -73,7 +73,7 @@ namespace HabitatApp.Services
 			if (currentItem.Id == rootPageData.ItemContext.First ().Id)
 				return rootPageData;
 
-			return await _sitecoreService.GeneratePageData (currentItem.Id, PayloadType.Content, new List<ScopeType> (){ ScopeType.Self }, Constants.Sitecore.Fields.Teasers.AccordeonSelector, currentItem.Source.Language);
+			return await _sitecoreService.GeneratePageData (currentItem.Id, PayloadType.Content, new List<ScopeType> (){ ScopeType.Self }, Constants.Sitecore.Fields.Teasers.TeaserSelector, currentItem.Source.Language);
 
 
 		}

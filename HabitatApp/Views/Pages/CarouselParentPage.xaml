@@ -5,10 +5,10 @@
 	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp" 
 	Title="{Binding Title}" 
 	x:Name="rootPage" 
-	xmlns:trigger="clr-namespace:HabitatApp.Triggers;assembly=HabitatApp"
+	xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
 	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
-	<ScrollView>
-		<Grid>
+	<ScrollView Padding="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+	<Grid Margin="0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="200" />
 				<RowDefinition Height="*" />
@@ -16,25 +16,26 @@
 			<Grid Grid.Row="0" Padding="10,0,10,0">
 				<Image Aspect="AspectFill" Source="{Binding ContentMedia, Converter={StaticResource imageConverter}}" />
 				<StackLayout Padding="10,10,10,20">
-					<StackLayout Opacity="0.7" BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+					<StackLayout BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
 						<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
-							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource HabitatWhiteSubtitleStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
+							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
 						</StackLayout>
 					</StackLayout>
 				</StackLayout>
 			</Grid>
-			<StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
-				<RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0">
-					<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,5,10,0" VerticalOptions="StartAndExpand" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.98}" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
+					<carousel:CarouselView BindingContext="{Binding Path=.}" Grid.Row="1" Padding="10,5,10,0" VerticalOptions="Fill" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
 						<carousel:CarouselView.ItemTemplate>
 							<DataTemplate>
-								<Grid RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.5}">
-									<Image x:Name="IndicatorRef" Opacity="{Binding Source={x:Reference rootPage}, Path=BindingContext.LongPressedOpacity}" Source="{Binding Media, Converter={StaticResource imageConverter}}" Aspect="AspectFill">
-										<Image.GestureRecognizers>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*" />
+									</Grid.RowDefinitions>
+									<ffimageloading:CachedImage Grid.Row="0" x:Name="IndicatorRef"  LoadingPlaceholder="Habitat.Images.ListItemPlaceholder.jpg" Source="{Binding Media, Converter={StaticResource imageConverter}}" Aspect="AspectFill" DownsampleToViewSize="true" DownsampleWidth="200" DownsampleHeight="200">
+										<ffimageloading:CachedImage.GestureRecognizers>
 											<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
-										</Image.GestureRecognizers>
-									</Image>
-									<StackLayout Padding="10,10,10,20">
+										</ffimageloading:CachedImage.GestureRecognizers>
+									</ffimageloading:CachedImage>
+									<StackLayout Grid.Row="0" Padding="10,10,10,20">
 										<StackLayout.GestureRecognizers>
 											<TapGestureRecognizer Command="{Binding Source={x:Reference rootPage}, Path=BindingContext.LinkSelectedCommand}" CommandParameter="{Binding NavigationItem}" />
 										</StackLayout.GestureRecognizers>
@@ -49,8 +50,8 @@
 							</DataTemplate>
 						</carousel:CarouselView.ItemTemplate>
 					</carousel:CarouselView>
-				</RelativeLayout>
-			</StackLayout>
+				
 		</Grid>
+	
 	</ScrollView>
 </ContentPage>

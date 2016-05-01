@@ -1,4 +1,6 @@
-﻿
+﻿using Sitecore.MobileSDK.API.Items;
+
+
 namespace HabitatApp.Models
 {
 
@@ -77,6 +79,15 @@ namespace HabitatApp.Models
 
 		}
 
+		private ISitecoreItem _sitecoreItem;
+
+		public ISitecoreItem SitecoreItem {
+			get {
+				return _sitecoreItem;
+			}
+			set { SetProperty (ref _sitecoreItem, value); }
+
+		}
 
 		private CachedMedia _media;
 

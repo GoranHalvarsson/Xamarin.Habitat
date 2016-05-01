@@ -83,16 +83,28 @@
 			</converter:BooleanToObjectConverter>
 		</ResourceDictionary>
 	</ContentPage.Resources>
-	<ScrollView Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-		<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-	
-				<Grid Padding="0,10,0,0">
+	<ScrollView>
+		<Grid Margin="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="200" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" Padding="10,0,10,0">
+				<Image Aspect="AspectFill" Source="{extension:ImageResource HabitatApp.Images.ListItemPlaceholder.jpg}" />
+				<StackLayout Padding="10,10,10,20">
+					<StackLayout BackgroundColor="{DynamicResource HabitatBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Orientation="Vertical">
+						<StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand" Orientation="Horizontal">
+							<Label x:Name="subtitleLabel" VerticalOptions="StartAndExpand" Style="{DynamicResource ArticleLightTextStyle}" HorizontalOptions="StartAndExpand" Text="{Binding ContentSummary, Converter={StaticResource htmlConverter}}" />
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
+			<StackLayout Grid.Row="1" Orientation="Vertical" Padding="0">
+				<Grid Padding="0,10,0,0" >
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="32" />
-						<RowDefinition Height="10" />
+						<RowDefinition Height="12" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="10" />
@@ -108,15 +120,13 @@
 						</Entry.Behaviors>
 					</Entry>
 					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference urlValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-						Style="{Binding Source={x:Reference urlValidator}, 
-							Path=IsValid, Converter={StaticResource boolToStyleValidUrl}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference urlValidator}, &#xA;							Path=IsValid, Converter={StaticResource boolToStyleValidUrl}}" />
 				</Grid>
 				<Grid Padding="0,10,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="32" />
-						<RowDefinition Height="10" />
+						<RowDefinition Height="12" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="10" />
@@ -132,15 +142,13 @@
 						</Entry.Behaviors>
 					</Entry>
 					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference userNameValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-						Style="{Binding Source={x:Reference userNameValidator}, 
-							Path=IsValid, Converter={StaticResource boolToStyleValidUserName}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference userNameValidator}, &#xA;							Path=IsValid, Converter={StaticResource boolToStyleValidUserName}}" />
 				</Grid>
 				<Grid Padding="0,10,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="32" />
-						<RowDefinition Height="10" />
+						<RowDefinition Height="12" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="10" />
@@ -151,20 +159,18 @@
 					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Password:">
 					</Label>
 					<Entry Grid.Row="1" Grid.Column="1" x:Name="sitecorePassword" VerticalOptions="Center" Text="{Binding UserSettings.SitecorePassword, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default" Placeholder="Password">
-					<Entry.Behaviors>
+						<Entry.Behaviors>
 							<behavior:RegexValidationBehavior x:Name="passwordValidator" RegexEntry="^(?!\s*$).+" />
 						</Entry.Behaviors>
 					</Entry>
 					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-						Style="{Binding Source={x:Reference passwordValidator}, 
-							Path=IsValid, Converter={StaticResource boolToStyleValidPassword}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference passwordValidator}, &#xA;							Path=IsValid, Converter={StaticResource boolToStyleValidPassword}}" />
 				</Grid>
 				<Grid Padding="0,10,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="32" />
-						<RowDefinition Height="10" />
+						<RowDefinition Height="12" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="10" />
@@ -175,236 +181,217 @@
 					</Grid.ColumnDefinitions>
 					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Caching content in hours">
 					</Label>
-					<Label BindingContext="{x:Reference cachingSlider}" Text="{Binding Value, StringFormat='{0:F0}'}" TextColor="White" Grid.Row="1" Grid.Column="1"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+					<Label BindingContext="{x:Reference cachingSlider}" Text="{Binding Value, StringFormat='{0:F0}'}" TextColor="White" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
 					</Label>
 					<Slider x:Name="cachingSlider" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Maximum="360" Minimum="0" Value="{Binding UserSettings.CachingInHours, Mode=TwoWay}" />
 				</Grid>
-			
-
-<!--			<OnPlatform x:TypeArguments="View" >
-			<OnPlatform.iOS>-->
-<!--				<control:TableViewHideSeparatorLines HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="200" BackgroundColor="{DynamicResource HabitatBackgroundColor}">
-					<TableSection Title="     ">
-							<ViewCell StyleId="disclosure">
-								<Grid Padding="0,0,0,0">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="10" />
-										<ColumnDefinition Width="9*" />
-									</Grid.ColumnDefinitions>
-									<Label TextColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Basic settings">
-									</Label>
-								</Grid>
-							</ViewCell>
-							</TableSection>-->
-<!--					<TableSection Title="       ">
-							<ViewCell>
-								<Grid Padding="0,0,0,0">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="10" />
-										<ColumnDefinition Width="9*" />
-									</Grid.ColumnDefinitions>
-									<Label TextColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Sync data">
-									</Label>
-								</Grid>
-							</ViewCell>
-					</TableSection>-->
-<!--				</control:TableViewHideSeparatorLines>-->
-<!--				</OnPlatform.iOS>
-				</OnPlatform>-->
-
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Navigation root path:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreNavigationRootPath, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default" >
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="navigationRootPathValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference navigationRootPathValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference navigationRootPathValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Navigation root id:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreNavigationRootId, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default" >
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="navigationRootIdValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference navigationRootIdValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference navigationRootIdValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Shell site:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreShellSite, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Url" >
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="shellSiteValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference shellSiteValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference shellSiteValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default database:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultDatabase, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default" >
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="databaseValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference databaseValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference databaseValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default language:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultLanguage, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default" >
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="languageValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference languageValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference languageValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Medialibrary root:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreMediaLibraryRoot, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Url">
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="mediaLibraryRootValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference mediaLibraryRootValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference mediaLibraryRootValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Media prefix:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreMediaPrefix, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="mediaPrefixValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference mediaPrefixValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference mediaPrefixValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-			<Grid Padding="0,10,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition Height="32" />
-					<RowDefinition Height="10" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="10" />
-					<ColumnDefinition Width="9*" />
-					<ColumnDefinition Width="20" />
-					<ColumnDefinition Width="1" />
-				</Grid.ColumnDefinitions>
-				<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default media resource extension:">
-				</Label>
-				<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultMediaResourceExtension, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
-				<Entry.Behaviors>
-						<behavior:RegexValidationBehavior x:Name="defaultMediaResourceExtensionValidator" RegexEntry="^(?!\s*$).+" />
-					</Entry.Behaviors>
-				</Entry>
-				<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference defaultMediaResourceExtensionValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
-				<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" 
-					Style="{Binding Source={x:Reference defaultMediaResourceExtensionValidator}, 
-						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
-			</Grid>
-
+				<!--			<OnPlatform x:TypeArguments="View" >
+				<OnPlatform.iOS>-->
+				<!--				<control:TableViewHideSeparatorLines HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="200" BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+						<TableSection Title="     ">
+								<ViewCell StyleId="disclosure">
+									<Grid Padding="0,0,0,0">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="10" />
+											<ColumnDefinition Width="9*" />
+										</Grid.ColumnDefinitions>
+										<Label TextColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Basic settings">
+										</Label>
+									</Grid>
+								</ViewCell>
+								</TableSection>-->
+				<!--					<TableSection Title="       ">
+								<ViewCell>
+									<Grid Padding="0,0,0,0">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="10" />
+											<ColumnDefinition Width="9*" />
+										</Grid.ColumnDefinitions>
+										<Label TextColor="White" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Sync data">
+										</Label>
+									</Grid>
+								</ViewCell>
+						</TableSection>-->
+				<!--				</control:TableViewHideSeparatorLines>-->
+				<!--				</OnPlatform.iOS>
+					</OnPlatform>-->
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Navigation root path:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreNavigationRootPath, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="navigationRootPathValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference navigationRootPathValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference navigationRootPathValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Navigation root id:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreNavigationRootId, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="navigationRootIdValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference navigationRootIdValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference navigationRootIdValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Shell site:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreShellSite, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Url">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="shellSiteValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference shellSiteValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference shellSiteValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default database:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultDatabase, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="databaseValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference databaseValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference databaseValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default language:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultLanguage, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="languageValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference languageValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference languageValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Medialibrary root:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreMediaLibraryRoot, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Url">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="mediaLibraryRootValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference mediaLibraryRootValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference mediaLibraryRootValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Media prefix:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreMediaPrefix, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="mediaPrefixValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference mediaPrefixValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference mediaPrefixValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
+				<Grid Padding="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="32" />
+						<RowDefinition Height="12" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition Width="9*" />
+						<ColumnDefinition Width="20" />
+						<ColumnDefinition Width="1" />
+					</Grid.ColumnDefinitions>
+					<Label TextColor="White" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Default media resource extension:">
+					</Label>
+					<Entry Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding UserSettings.SitecoreDefaultMediaResourceExtension, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Keyboard="Default">
+						<Entry.Behaviors>
+							<behavior:RegexValidationBehavior x:Name="defaultMediaResourceExtensionValidator" RegexEntry="^(?!\s*$).+" />
+						</Entry.Behaviors>
+					</Entry>
+					<Image HorizontalOptions="Start" Grid.Row="1" Grid.Column="2" Style="{Binding Source={x:Reference defaultMediaResourceExtensionValidator}, Path=IsValid, Converter={StaticResource boolToStyleImage}}" />
+					<Label HorizontalOptions="CenterAndExpand" Grid.Row="2" Grid.Column="1" Style="{Binding Source={x:Reference defaultMediaResourceExtensionValidator}, &#xA;						Path=IsValid, Converter={StaticResource boolToStyleValidFieled}}" />
+				</Grid>
 			</StackLayout>
+		</Grid>
 	</ScrollView>
 </ContentPage>

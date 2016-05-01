@@ -18,7 +18,7 @@
 
 				public struct Teasers
 				{
-					public const string AccordeonSelector = "AccordeonSelector";
+					public const string TeaserSelector = "TeaserSelector";
 					public const string TeaserTitle = "TeaserTitle";
 					public const string TeaserImage = "TeaserImage";
 					public const string TeaserSummary = "TeaserSummary";

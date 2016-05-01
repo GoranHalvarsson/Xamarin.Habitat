@@ -1,4 +1,6 @@
-﻿namespace HabitatApp.ViewModels.Pages
+﻿using Autofac;
+
+namespace HabitatApp.ViewModels.Pages
 {
 
 	using System;
@@ -134,11 +136,36 @@
 			bool siteIsUp = await CrossConnectivity.Current.IsRemoteReachable (settings.RestBaseUrl);
 
 			if (!siteIsUp) {
-				await App.AppInstance.MainPage.DisplayAlert("Website issues", "Website is not reachable", "Close");
+				//await App.AppInstance.MainPage.DisplayAlert("Website issues", "Website is not reachable", "Close");
+				await PopSettingsAsModal();
 				return false;
 			}
 
 			return true;
+		}
+
+		private async Task PopSettingsAsModal ()
+		{
+			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.SettingsPage");
+
+			Page modalPage = App.AppInstance.Container.Resolve (pageType) as Page;
+			SettingsPageViewModel viewModel = (SettingsPageViewModel)modalPage.BindingContext;
+			viewModel.ConnectedToPage = modalPage;
+
+			//We need to load it all before page appears
+			//Page.Appering() gives an unfortunate delay
+			viewModel.LoadAsync ();
+
+			viewModel.ContentSummary = "Please enter a valid website url";
+
+			modalPage.ToolbarItems.Add (new ToolbarItem {
+				Text = "Close",
+				Command = new Command (() => ConnectedToPage.Navigation.PopModalAsync ())
+			} );
+			NavigationPage nav = new NavigationPage (modalPage);
+			nav.BarBackgroundColor = Color.FromRgb (46, 56, 78);
+			nav.BarTextColor = Color.White;
+			await ConnectedToPage.Navigation.PushModalAsync (nav);
 		}
 
 		private async Task SetData(){

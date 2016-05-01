@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 
 namespace HabitatApp.Services
@@ -8,6 +8,7 @@ namespace HabitatApp.Services
 	using Sitecore.MobileSDK.API.Items;
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
+	using System;
 	using System.Linq;
 	using HabitatApp.Repositories;
 
@@ -74,6 +75,7 @@ namespace HabitatApp.Services
 					Text = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Summary),
 					NavigationItem = item.Id,
 					NavigationText = item.GetValueFromField (Constants.Sitecore.Fields.PageContent.Title),
+					SitecoreItem = item,
 					Media =  await _cachedMediaRepository.GetCache(item.GetImageUrlFromMediaField(Constants.Sitecore.Fields.PageContent.Image))	
 	
 				};
@@ -86,16 +88,6 @@ namespace HabitatApp.Services
 
 		}
 
-
-		public async Task<ListItem> GetDefaultListItem ()
-		{
-			return new ListItem{
-				Header = "Extensibility",
-				Text = "A consistent and discoverable architecture",
-				Media =  _cachedMediaRepository.Create(Guid.NewGuid(),"http://habitat.sitecore.net/-/media/Habitat/Images/Wide/Habitat-001-wide.jpg")	
-		
-			};
-		}
 
 
 	}

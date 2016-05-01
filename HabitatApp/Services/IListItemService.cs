@@ -12,8 +12,6 @@ namespace HabitatApp.Services
 	{
 		Task<IEnumerable<ListItem>> GenerateListItemsFromTeasers (IList<ScItemsResponse> itemsResponse);
 		Task<IEnumerable<ListItem>> GenerateListItemsFromChildren (ScItemsResponse itemsResponse);
-
-		Task<ListItem> GetDefaultListItem ();
 	}
 }
 
