@@ -11,6 +11,7 @@ Screendumps IOS:
 ![carouselparentpage](https://cloud.githubusercontent.com/assets/726479/14654193/c2cadd3e-067c-11e6-9db0-7f64e262636c.PNG)
 <img src="https://cloud.githubusercontent.com/assets/726479/14675183/0714701e-0708-11e6-9620-d30968d102c2.PNG" width="180px"/>
 <img src="https://cloud.githubusercontent.com/assets/726479/14768664/eb4a5ed6-0a48-11e6-9af5-5a234f62cc62.PNG" width="180px"/>
+<img src="https://cloud.githubusercontent.com/assets/726479/15094385/51295ac8-14a2-11e6-8833-9ec6128a45f9.PNG" width="180px"/>
 
 
 
