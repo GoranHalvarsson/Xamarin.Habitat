@@ -19,13 +19,11 @@ namespace HabitatApp.ViewModels.Pages
 	{
 		private readonly INavigationMenuService _navigationMenuService;
 		private readonly IPageService _pageService;
-		private readonly ISettingsRepository _settingsRepository;
-
-		public NavigationTabbedPageViewModel (IPageService pageService, INavigationMenuService navigationMenuService, ISettingsRepository settingsRepository)
+	
+		public NavigationTabbedPageViewModel (IPageService pageService, INavigationMenuService navigationMenuService)
 		{
 			_pageService = pageService;
 			_navigationMenuService = navigationMenuService;
-			_settingsRepository = settingsRepository;
 		}
 
 
@@ -79,11 +77,6 @@ namespace HabitatApp.ViewModels.Pages
 			TabbedPages = list.ToObservableCollection ();
 
 		} 
-
-
-
-
-
 	}
 }
 
