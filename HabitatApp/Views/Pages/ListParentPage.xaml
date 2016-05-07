@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HabitatApp.Views.Pages.ListParentPage" xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp" Title="{Binding Title}" x:Name="rootPage" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="HabitatApp.Views.Pages.ListParentPage" 
+	xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp" 
+	Title="{Binding Title}" 
+	Icon="{Binding Icon}"
+	x:Name="rootPage" 
+	xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 	<ListView x:Name="MediaItemsListView" 
 		BackgroundColor="{DynamicResource HabitatBackgroundColor}" 
 		ItemsSource="{Binding ListItems}" 

@@ -12,8 +12,6 @@
 
 		public string NavigationTitle { get; set; }
 
-		public bool ShowInMenu { get; set; }
-
 		public ScItemsResponse ItemContext { get; set; }
 
 		public IList<ScItemsResponse> DataSourceFromField { get; set; }

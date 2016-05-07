@@ -50,11 +50,23 @@ namespace HabitatApp
 				.As<IListItemService> ()
 				.SingleInstance ();
 
+			builder.RegisterType<PageService> ()
+				.As<IPageService> ()
+				.SingleInstance ();
+
 			builder.RegisterType<NavigationService> ()
 				.As<INavigationService> ()
 				.SingleInstance ();
 
+			builder.RegisterType<SplashPageViewModel> ();
+			builder.RegisterType<SplashPage> ();
 
+
+			builder.RegisterType<NavigationTabbedPageViewModel> ();
+			builder.RegisterType<NavigationTabbedPage> ();
+
+//			builder.RegisterType<NavigationTabbedPageViewModel> ();
+//			builder.RegisterType<TabbedNavigationPage> ();
 
 			builder.RegisterType<NavigationMasterViewModel> ();
 			builder.RegisterType<NavigationMasterPage> ();

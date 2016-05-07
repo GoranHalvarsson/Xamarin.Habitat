@@ -4,7 +4,9 @@
 	x:Class="HabitatApp.Views.Pages.StartPage" 
 	xmlns:carousel="clr-namespace:HabitatApp.Views.Controls.Carousel;assembly=HabitatApp" 
 	Title="{Binding Title}" 
+	xmlns:extension="clr-namespace:HabitatApp.Extensions;assembly=HabitatApp" 
 	x:Name="rootPage" 
+	Icon="{Binding Icon}"
 	BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 		<carousel:CarouselView BindingContext="{Binding Path=.}" Padding="10,0,10,10" VerticalOptions="Fill" DotColor="White" DotBorderWidth="1" DotBorderColor="{DynamicResource HabitatBackgroundColor}" DotSize="10" ScrollToIndex="{Binding ScrollToIndex, Mode=TwoWay}">
 			<carousel:CarouselView.ItemTemplate>

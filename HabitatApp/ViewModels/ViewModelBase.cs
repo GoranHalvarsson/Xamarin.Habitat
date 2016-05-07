@@ -29,6 +29,13 @@ namespace HabitatApp.ViewModels
 		}
 
 
+		private string _icon;
+
+		public string Icon { 
+			get { return _icon; } 
+			set { SetProperty(ref _icon, value); }
+		}
+
 		private bool _isBusy;
 
 		public bool IsBusy

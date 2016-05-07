@@ -103,6 +103,7 @@ namespace HabitatApp.ViewModels.Pages
 
 			PageData pageData = base.PageContext; 
 
+	
 			await SetData (pageData);
 
 			base.ClearBusy();

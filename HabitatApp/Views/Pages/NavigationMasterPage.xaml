@@ -5,29 +5,40 @@
 	xmlns:control="clr-namespace:HabitatApp.Views.Controls;assembly=HabitatApp"  
 	x:Class="HabitatApp.Views.Pages.NavigationMasterPage">
 	<MasterDetailPage.Master>
-		<ContentPage Padding="5, 25" Title=" " Icon="{Binding MenuIcon}" BackgroundColor="{DynamicResource HabitatBackgroundColor}">
+		<ContentPage Padding="5, 25" 
+			Icon="{Binding MenuIcon}" 
+			Title=" " 
+			BackgroundColor="{DynamicResource HabitatBackgroundColor}">
 			<StackLayout VerticalOptions="FillAndExpand">
-				
-					<ListView x:Name="listView" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" SeparatorVisibility="None" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding MenuItemSelected}">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<control:ViewCellNonSelectable>
-									<Grid>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="2">
-											</ColumnDefinition>
-											<ColumnDefinition Width="*">
-											</ColumnDefinition>
-										</Grid.ColumnDefinitions>
-										<BoxView Color="{Binding RowColor}" Grid.Column="0" />
-
-										<Label Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Title}" Font="Large" TextColor="White" LineBreakMode="TailTruncation"></Label>
-									</Grid>
-										
-								</control:ViewCellNonSelectable>
-						    </DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
+				<ListView x:Name="listView" 
+					BackgroundColor="Transparent" 
+					VerticalOptions="FillAndExpand" 
+					SeparatorVisibility="None" 
+					ItemsSource="{Binding MenuItems}" 
+					SelectedItem="{Binding MenuItemSelected}">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<control:ViewCellNonSelectable>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="2">
+										</ColumnDefinition>
+										<ColumnDefinition Width="*">
+										</ColumnDefinition>
+									</Grid.ColumnDefinitions>
+									<BoxView Color="{Binding RowColor}" Grid.Column="0" />
+									<Label Grid.Column="1" 
+										VerticalTextAlignment="Center" 
+										HorizontalTextAlignment="Start" 
+										Text="{Binding Title}" 
+										Font="Large" 
+										TextColor="White" 
+										LineBreakMode="TailTruncation" />
+								</Grid>
+							</control:ViewCellNonSelectable>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
 			</StackLayout>
 		</ContentPage>
 	</MasterDetailPage.Master>
@@ -38,9 +49,10 @@
 		BackgroundColor = "{DynamicResource HabitatBackgroundColor}"
 		Title="Habitat">
 			<StackLayout VerticalOptions="Center">
-				<Image Aspect="AspectFit" Source="{Binding HabitatLogo}" VerticalOptions="Center" HorizontalOptions="Center"/>
-<!--				<ActivityIndicator IsVisible="{Binding ConnectionOk, Mode=TwoWay}" IsRunning="{Binding ConnectionOk, Mode=TwoWay, }" Color="White" />-->
-				<Button Text="REFRESH CONNECTION" VerticalOptions="Center"  Command="{Binding ReStartCommand}" HorizontalOptions="Center" IsVisible="{Binding ConnectionOk, Converter={StaticResource boolNegationConverter}}" />
+				<Image Aspect="AspectFit" 
+					Source="{Binding HabitatLogo}" 
+					VerticalOptions="Center" 
+					HorizontalOptions="Center"/>
 		   	</StackLayout>
 		</ContentPage>
 	</MasterDetailPage.Detail>

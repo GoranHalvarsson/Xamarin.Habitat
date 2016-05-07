@@ -122,6 +122,19 @@
     <Compile Include="Converters\CachedMediaToImageSourceConverter.cs" />
     <Compile Include="Views\Controls\CustomGridView.cs" />
     <Compile Include="CrossDependencies\IFileService.cs" />
+    <Compile Include="Views\Pages\BindableTabbedPage.cs" />
+    <Compile Include="Views\Pages\NavigationTabbedPage.xaml.cs">
+      <DependentUpon>NavigationTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\NavigationTabbedPageViewModel.cs" />
+    <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\IPageService.cs" />
+    <Compile Include="Exceptions\Page\PageFailedException.cs" />
+    <Compile Include="Views\Pages\CustomNavigationPage.cs" />
+    <Compile Include="Views\Pages\SplashPage.xaml.cs">
+      <DependentUpon>SplashPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\SplashPageViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -215,6 +228,8 @@
     <Folder Include="Triggers\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Images\" />
+    <Folder Include="Exceptions\Page\" />
+    <Folder Include="Images\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Controls\Carousel\CarouselView.xaml">
@@ -250,5 +265,15 @@
     <EmbeddedResource Include="Images\error.png" />
     <EmbeddedResource Include="Images\success.png" />
     <EmbeddedResource Include="Images\ListItemPlaceholder.jpg" />
+    <EmbeddedResource Include="Views\Pages\NavigationTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Icons\home_64.png" />
+    <EmbeddedResource Include="Images\Icons\gear_64.png" />
+    <EmbeddedResource Include="Images\Icons\storage_64.png" />
+    <EmbeddedResource Include="Images\Icons\info_64.png" />
+    <EmbeddedResource Include="Views\Pages\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

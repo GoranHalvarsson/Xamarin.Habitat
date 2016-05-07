@@ -22,6 +22,8 @@
 
 			_carouselParentPageViewModel = carouselParentPageViewModel;
 
+			_carouselParentPageViewModel.ConnectedToPage = this;
+
 			BindingContext = _carouselParentPageViewModel;
 
 		}

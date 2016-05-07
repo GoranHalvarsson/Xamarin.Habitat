@@ -2,13 +2,10 @@
 namespace HabitatApp.Models
 {
 	using Xamarin.Forms;
-	using System;
-
 
 	public class NavigationMenuItem : ObservableModel
 	{
 
-	
 		public string Title { get; set; }
 
 		public string IconSource { get; set; }

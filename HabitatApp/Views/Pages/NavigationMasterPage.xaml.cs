@@ -1,10 +1,9 @@
-﻿using Xamarin.Forms.Xaml;
+﻿
 
 namespace HabitatApp.Views.Pages
 {
-
-
 	using Xamarin.Forms;
+	using Xamarin.Forms.Xaml;
 	using HabitatApp.ViewModels.Pages;
 	using Autofac;
 
@@ -28,7 +27,7 @@ namespace HabitatApp.Views.Pages
 			_navigationMasterViewModel.ConnectedToPage = this;
 
 			BindingContext = _navigationMasterViewModel;
-
+			//This is for Android, we dont want to have the row selected in the menu
 			listView.ItemSelected += (s, e) => {
 				listView.SelectedItem = null; 
 			};

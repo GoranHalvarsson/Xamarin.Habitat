@@ -13,19 +13,6 @@
 		{
 			if (Source == null)
 				return null;
-
-
-
-//			ImageSource imageSource = null;
-//
-//			var transformer = Dependency.Resolve<IImageUrlTransformer, ImageUrlTransformer>(true);
-//			string url = transformer.TransformForCurrentPlatform(Source);
-//
-//			if (Device.OS == TargetPlatform.Android)
-//			{
-//				imageSource = ImageSource.FromFile(url);
-//			}
-
 			return ImageSource.FromResource(Source);
 		}
 	}

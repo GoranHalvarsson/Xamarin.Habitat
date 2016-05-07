@@ -1,88 +1,32 @@
 ﻿namespace HabitatApp.Services
 {
-	using System;
 	using Xamarin.Forms;
 	using System.Threading.Tasks;
-	using Sitecore.MobileSDK.API.Items;
-	using System.Linq;
-	using Sitecore.MobileSDK.API.Request.Parameters;
-	using System.Collections.Generic;
-	using HabitatApp.Repositories;
 	using HabitatApp.Models;
-	using Autofac;
 	using HabitatApp.ViewModels;
-	using HabitatApp.Extensions;
 
 	public class NavigationService : INavigationService
 	{
 
-		private readonly ISitecoreService _sitecoreService;
-		private readonly ISettingsRepository _settingsRepository;
+		private readonly IPageService _pageService;
 
-		public NavigationService (ISitecoreService sitecoreService, ISettingsRepository settingsRepository)
+		public NavigationService(IPageService pageService)
 		{
-			_sitecoreService = sitecoreService;
-			_settingsRepository = settingsRepository;
+			_pageService = pageService;
 		}
-
-		private Page LoadPageByPageData(PageData pageData)
-		{
-
-			if (pageData == null || pageData.ItemContext == null)
-				return null;
-
-			ISitecoreItem item = pageData.ItemContext.First ();
-
-			if(item == null)
-				return null;
-
-
-			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.{item.GetTemplateName()}");
-
-			if (pageType == null)
-				return null;
-			
-			//Load page by page type
-			Page currentPage = App.AppInstance.Container.Resolve(pageType) as Page;
-		
-			IViewModel viewModel = (IViewModel)currentPage.BindingContext;
-
-			viewModel.PageContext = pageData;
-
-			return currentPage;
-
-		}
-
-		private async Task<Page> LoadPageByItemId(string id)
-		{
-
-			Settings settings = await _settingsRepository.GetWithFallback ();
-
-			PageData pageData = await _sitecoreService.GeneratePageData(id, 
-				PayloadType.Content, 
-				new List<ScopeType>(){ ScopeType.Self }, 
-				Constants.Sitecore.Fields.Teasers.TeaserSelector, 
-				settings.SitecoreDefaultLanguage);
-
-
-			return LoadPageByPageData(pageData);
-
-		}
-
 
 		public async Task NavigateToPageByItemId (Page navigateFromPage, string itemId)
 		{
-			Page page = await LoadPageByItemId(itemId);
+			Page page = await _pageService.LoadPageByItemId(itemId);
 			await NavigateAndLoadBindingContext (navigateFromPage, page);
 		}
 
 		public async Task NavigateToPageByPageData (Page navigateFromPage, PageData pageData)
 		{
-			Page page = LoadPageByPageData(pageData);
+			Page page = await _pageService.LoadPageByPageData(pageData);
 			await NavigateAndLoadBindingContext (navigateFromPage, page);
 		}
 
-	
 
 		private async Task NavigateAndLoadBindingContext(Page navigateFromPage, Page navigateToPage){
 

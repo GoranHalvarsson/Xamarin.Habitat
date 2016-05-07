@@ -1,6 +1,4 @@
-﻿
-
-namespace HabitatApp.Services
+﻿namespace HabitatApp.Services
 {
 
 	using System.Collections.Generic;
@@ -56,7 +54,9 @@ namespace HabitatApp.Services
 					Title = item.GetValueFromField(Constants.Sitecore.Fields.Navigation.NavigationTitle),
 					RowColor = Color.Transparent,
 					PageContext = await GetPageData(item, rootPageData),
-					ShowInMenu = item.GetCheckBoxValueFromField(Constants.Sitecore.Fields.Navigation.ShowInNavigation)
+					ShowInMenu = item.GetCheckBoxValueFromField(Constants.Sitecore.Fields.Navigation.ShowInNavigation),
+					IconSource = item.GetValueFromField(Constants.Sitecore.Fields.Navigation.Icon)
+						
 				};
 
 				menuItems.Add(menuItem);

@@ -30,6 +30,7 @@
 				{
 					public const string NavigationTitle = "NavigationTitle";
 					public const string ShowInNavigation = "ShowInNavigation";
+					public const string Icon = "Icon";
 				}
 
 				public struct PageContent

@@ -1,4 +1,4 @@
-﻿using Autofac;
+﻿
 
 namespace HabitatApp.ViewModels.Pages
 {
@@ -13,22 +13,19 @@ namespace HabitatApp.ViewModels.Pages
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
 	using HabitatApp.Views.Pages;
-	using System.Windows.Input;
-	using Plugin.Connectivity;
-	using HabitatApp.Repositories;
+
+
 
 
 	public class NavigationMasterViewModel : ViewModelBase
 	{
 		private readonly INavigationMenuService _navigationMenuService;
 		private readonly INavigationService _navigationService;
-		private readonly ISettingsRepository _settingsRepository;
 
-		public NavigationMasterViewModel (INavigationService navigationService, INavigationMenuService navigationMenuService, ISettingsRepository settingsRepository)
+		public NavigationMasterViewModel (INavigationService navigationService, INavigationMenuService navigationMenuService)
 		{
 			_navigationMenuService = navigationMenuService;
 			_navigationService = navigationService;
-			_settingsRepository = settingsRepository;
 		}
 
 		private ObservableCollection<NavigationMenuItem> _menuItems = new ObservableCollection<NavigationMenuItem> ();
@@ -61,15 +58,6 @@ namespace HabitatApp.ViewModels.Pages
 
 		}
 
-		private string _habitatLogo;
-
-		public String HabitatLogo {
-			get {
-				return _habitatLogo;
-			}
-			set { SetProperty (ref _habitatLogo, value); }
-
-		}
 
 		private string _menuIcon;
 
@@ -81,100 +69,24 @@ namespace HabitatApp.ViewModels.Pages
 
 		}
 
-		private bool _connectionOk = true;
-
-		public bool ConnectionOk {
-			get {
-				return _connectionOk;
-			}
-			set { SetProperty (ref _connectionOk, value); }
-
-		}
-
-
-		private Command _reStartCommand;
-		public ICommand ReStartCommand
-		{
-			get
-			{
-				if (_reStartCommand == null)
-				{
-					_reStartCommand = new Command (async (parameter) => await SetData ());
-				}
-
-				return _reStartCommand;
-			}
-		}
-
 
 		/// <summary>
 		/// Loads the async.
 		/// </summary>
-		/// <returns>The async.</returns>
 		public async override Task LoadAsync()
 		{
-
-			HabitatLogo = "HabitatSmallTransparent.png"; 
 
 
 			await SetData ();
 
 		}
 
-
-		private async Task<bool> NewtWorkAndSiteIsAvailable ()
-		{
-			
-
-			if (!CrossConnectivity.Current.IsConnected) {
-				await App.AppInstance.MainPage.DisplayAlert ("Network Issues", "Some issues with network", "Close");
-				return false;
-			}
-
-			Settings settings = await _settingsRepository.GetWithFallback ();
-
-			bool siteIsUp = await CrossConnectivity.Current.IsRemoteReachable (settings.RestBaseUrl);
-
-			if (!siteIsUp) {
-				//await App.AppInstance.MainPage.DisplayAlert("Website issues", "Website is not reachable", "Close");
-				await PopSettingsAsModal();
-				return false;
-			}
-
-			return true;
-		}
-
-		private async Task PopSettingsAsModal ()
-		{
-			Type pageType = Type.GetType ($"HabitatApp.Views.Pages.SettingsPage");
-
-			Page modalPage = App.AppInstance.Container.Resolve (pageType) as Page;
-			SettingsPageViewModel viewModel = (SettingsPageViewModel)modalPage.BindingContext;
-			viewModel.ConnectedToPage = modalPage;
-
-			//We need to load it all before page appears
-			//Page.Appering() gives an unfortunate delay
-			viewModel.LoadAsync ();
-
-			viewModel.ContentSummary = "Please enter a valid website url";
-
-			modalPage.ToolbarItems.Add (new ToolbarItem {
-				Text = "Close",
-				Command = new Command (() => ConnectedToPage.Navigation.PopModalAsync ())
-			} );
-			NavigationPage nav = new NavigationPage (modalPage);
-			nav.BarBackgroundColor = Color.FromRgb (46, 56, 78);
-			nav.BarTextColor = Color.White;
-			await ConnectedToPage.Navigation.PushModalAsync (nav);
-		}
-
+		/// <summary>
+		/// Sets the data.
+		/// </summary>
+		/// <returns>The data.</returns>
 		private async Task SetData(){
 		
-			ConnectionOk = await NewtWorkAndSiteIsAvailable();
-
-			if (!ConnectionOk)
-				return;
-
 
 			IEnumerable<NavigationMenuItem> menuItems = await _navigationMenuService.GenerateMenuItems ();
 
@@ -189,6 +101,8 @@ namespace HabitatApp.ViewModels.Pages
 			MenuIcon = "HamburgerIcon.png";
 
 		} 
+
+
 
 		/// <summary>
 		/// Sets the menu.
@@ -238,6 +152,8 @@ namespace HabitatApp.ViewModels.Pages
 			currentSelectedItem.RowColor = Color.Red;
 
 		}
+
+
 
 	}
 }

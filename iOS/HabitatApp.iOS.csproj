@@ -194,6 +194,7 @@
     <Compile Include="Renderers\GridView\GridDataSource.cs" />
     <Compile Include="Renderers\GridView\GridCollectionView.cs" />
     <Compile Include="CrossDependencies\FileService.cs" />
+    <Compile Include="Renderers\TabbedPageRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -202,6 +203,18 @@
     <BundleResource Include="Resources\HamburgerIcon.png" />
     <BundleResource Include="Resources\HabitatSmallTransparent.png" />
     <BundleResource Include="Resources\ListItemPlaceholder.jpg" />
+    <BundleResource Include="Resources\home_64.png" />
+    <BundleResource Include="Resources\info_64.png" />
+    <BundleResource Include="Resources\storage_64.png" />
+    <BundleResource Include="Resources\gear_64.png" />
+    <BundleResource Include="Resources\info_48.png" />
+    <BundleResource Include="Resources\gear_48.png" />
+    <BundleResource Include="Resources\home_48.png" />
+    <BundleResource Include="Resources\storage_48.png" />
+    <BundleResource Include="Resources\home_24.png" />
+    <BundleResource Include="Resources\gear_24.png" />
+    <BundleResource Include="Resources\info_24.png" />
+    <BundleResource Include="Resources\storage_24.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CrossDependencies\" />

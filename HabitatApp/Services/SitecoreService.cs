@@ -1,8 +1,4 @@
-﻿using Sitecore.MobileSDK.API.MediaItem;
-using System.IO;
-
-
-namespace HabitatApp.Services
+﻿namespace HabitatApp.Services
 {
 
 	using System;
@@ -21,7 +17,7 @@ namespace HabitatApp.Services
 	using HabitatApp.Models;
 	using HabitatApp.Extensions;
 	using HabitatApp.CrossDependencies;
-
+	using System.IO;
 
 
 	public class SitecoreService : ISitecoreService
@@ -255,9 +251,6 @@ namespace HabitatApp.Services
 			}
 
 		}
-
-
-
 
 	}
 
