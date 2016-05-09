@@ -119,7 +119,6 @@
     <Compile Include="Extensions\ImageResourceExtension.cs" />
     <Compile Include="Converters\BooleanToObjectConverter.cs" />
     <Compile Include="Behaviors\RegexValidationBehavior.cs" />
-    <Compile Include="Converters\CachedMediaToImageSourceConverter.cs" />
     <Compile Include="Views\Controls\CustomGridView.cs" />
     <Compile Include="CrossDependencies\IFileService.cs" />
     <Compile Include="Views\Pages\BindableTabbedPage.cs" />
@@ -135,6 +134,7 @@
       <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Pages\SplashPageViewModel.cs" />
+    <Compile Include="Converters\CachedMediaToImageSourceConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

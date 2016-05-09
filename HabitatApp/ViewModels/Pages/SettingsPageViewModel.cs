@@ -1,12 +1,12 @@
-﻿using Sitecore.MobileSDK.API.Items;
-using System.Linq;
-using HabitatApp.Extensions;
+﻿
 
 
 namespace HabitatApp.ViewModels.Pages
 {
 	using System;
-
+	using Sitecore.MobileSDK.API.Items;
+	using System.Linq;
+	using HabitatApp.Extensions;
 	using System.Threading.Tasks;
 	using HabitatApp.Models;
 	using HabitatApp.Repositories;
@@ -83,6 +83,9 @@ namespace HabitatApp.ViewModels.Pages
 			base.Title = "Settings";
 
 			UserSettings = await _settingsRepository.GetWithFallback ();
+
+			if (base.PageContext == null)
+				return;
 
 			base.Title = pageData.NavigationTitle;
 
