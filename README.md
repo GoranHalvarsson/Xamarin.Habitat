@@ -3,9 +3,9 @@
 This is a project where the idea is to present data from a [Sitecore Habitat](https://github.com/Sitecore/Habitat/wiki) website into a Xamarin cross platform app. We will use [Sitecore Mobile SDK for Xamarin](https://components.xamarin.com/view/sitecore.mobile.sdk) to get(and set) the data. This is an ongoing project.
 
 Check out the blogposts:  
-[Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Getting : Part 1 started](https://visionsincode.wordpress.com/2016/04/13/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-getting-started/)
+[Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Getting started: Part 1](https://visionsincode.wordpress.com/2016/04/13/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-getting-started/)
 
-[Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Website and Navigation : Part 2 started](https://visionsincode.wordpress.com/2016/05/07/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-website-and-navigation-part-2/)
+[Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Website and Navigation : Part 2](https://visionsincode.wordpress.com/2016/05/07/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-website-and-navigation-part-2/)
 
 Screendumps IOS:
 
