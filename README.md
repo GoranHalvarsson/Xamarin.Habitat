@@ -9,8 +9,6 @@ Check out the blogposts:
 
 Screendumps IOS:
 
-Screendumps IOS:
-
 ![startpage](https://cloud.githubusercontent.com/assets/726479/14654173/b1c19410-067c-11e6-8f5d-29c538055e76.PNG)
 ![navigation](https://cloud.githubusercontent.com/assets/726479/14654185/bad5dd4a-067c-11e6-8fd4-cc603d10b1cc.PNG)
 ![carouselparentpage](https://cloud.githubusercontent.com/assets/726479/14654193/c2cadd3e-067c-11e6-9db0-7f64e262636c.PNG)
