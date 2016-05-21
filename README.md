@@ -7,6 +7,13 @@ Check out the blogposts:
 
 [Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Website and Navigation : Part 2](https://visionsincode.wordpress.com/2016/05/07/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-website-and-navigation-part-2/)
 
+
+Here is the packages for the sitecore site(I have renamed them as png, just rename them to zip):
+
+<a href="https://cloud.githubusercontent.com/assets/726479/15448459/9f55d9f4-1f62-11e6-83b5-9b7c73dc2b67.png">xamarin habitat templates</a>
+
+<a href="https://cloud.githubusercontent.com/assets/726479/15448457/911f08ce-1f62-11e6-9f7d-a6f01e46206d.png">xamarin habitat content</a>
+
 Screendumps IOS:
 
 ![startpage](https://cloud.githubusercontent.com/assets/726479/14654173/b1c19410-067c-11e6-8f5d-29c538055e76.PNG)
