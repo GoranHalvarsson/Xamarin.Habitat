@@ -18,16 +18,7 @@ namespace HabitatApp
 
 			HabitatApp.App.AppInstance.MainPage = HabitatApp.App.AppInstance.Container.Resolve<SplashPage> ();
 
-//			using (ILifetimeScope lifetimeScope = HabitatApp.App.AppInstance.Container.BeginLifetimeScope())
-//			{
-//				HabitatApp.App.AppInstance.MainPage = lifetimeScope.Resolve<SplashPage> ()
-//
-////				if(Device.OS == TargetPlatform.iOS)
-////					HabitatApp.App.AppInstance.MainPage = lifetimeScope.Resolve<NavigationTabbedPage> ();
-////				else
-////					HabitatApp.App.AppInstance.MainPage = lifetimeScope.Resolve<NavigationMasterPage> ();
-//
-//			}
+
 		}
 	}
 }

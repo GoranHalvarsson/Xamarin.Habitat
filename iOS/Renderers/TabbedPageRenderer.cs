@@ -2,7 +2,7 @@
 using HabitatApp.iOS.Renderers;
 
 
-[assembly: ExportRenderer(typeof(TabbedPage), typeof(TabbedPageRenderer))]
+//No need to this anymore, since the last [assembly: ExportRenderer(typeof(TabbedPage), typeof(TabbedPageRenderer))]
 namespace HabitatApp.iOS.Renderers
 {
 	using System;

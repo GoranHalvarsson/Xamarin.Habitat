@@ -65,9 +65,6 @@ namespace HabitatApp
 			builder.RegisterType<NavigationTabbedPageViewModel> ();
 			builder.RegisterType<NavigationTabbedPage> ();
 
-//			builder.RegisterType<NavigationTabbedPageViewModel> ();
-//			builder.RegisterType<TabbedNavigationPage> ();
-
 			builder.RegisterType<NavigationMasterViewModel> ();
 			builder.RegisterType<NavigationMasterPage> ();
 
