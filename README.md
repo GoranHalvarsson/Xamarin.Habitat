@@ -7,6 +7,7 @@ Check out the blogposts:
 
 [Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Website and Navigation : Part 2](https://visionsincode.wordpress.com/2016/05/07/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-website-and-navigation-part-2/)
 
+[Build an App with Xamarin.Forms using Sitecore Mobile SDK for Xamarin – Putting it all together: Part 3](https://visionsincode.wordpress.com/2016/06/22/build-an-app-with-xamarin-forms-using-sitecore-mobile-sdk-for-xamarin-putting-it-all-together/)
 
 Here is the packages for the sitecore site(I have renamed them as png, just rename them to zip):
 
